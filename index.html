@@ -1,0 +1,6563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>최서영 | Portfolio</title>
+
+    <link
+        rel="stylesheet"
+        as="style"
+        crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    >
+
+    <style>
+        /* 우측 하단 플로팅 테마 스위처 */
+        .floating-theme-switcher {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 3000;
+
+            display: flex;
+            gap: 3px;
+
+            padding: 4px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 4px 4px 0 var(--shadow);
+        }
+
+        .floating-theme-switcher .theme-btn {
+            appearance: none;
+
+            padding: 6px 10px;
+
+            border: 1px solid transparent;
+
+            background: transparent;
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition: all 0.15s ease;
+        }
+
+        .floating-theme-switcher .theme-btn.active {
+            border-color: var(--line);
+
+            background: var(--soft);
+            color: var(--ink);
+
+            box-shadow: 2px 2px 0 var(--shadow);
+        }
+        :root {
+            --bg: #f6f5f0;
+            --card: #ffffff;
+            --ink: #111111;
+            --muted: #6c6c67;
+            --line: #181818;
+            --soft: #e9e8e2;
+            --shadow: #c6c6c1;
+
+            --mono:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+        }
+        
+        /* =========================================================
+        THEME (스타일 2: 미니멀 아이콘 탭)
+        ========================================================= */
+
+        body.dark-mode {
+            --bg: #111111;
+            --card: #181818;
+            --ink: #f2f2ee;
+            --muted: #aaa9a3;
+            --line: #e3e3dd;
+            --soft: #272725;
+            --shadow: #000000;
+        }
+
+        .nav-center-wrapper {
+            margin-top: auto;
+            padding-top: clamp(0.6rem, 1.5vh, 1.2rem);
+        }
+
+        .theme-switcher {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-top: 0.6rem;
+
+            border-top: 1.5px solid var(--line);
+        }
+
+        .theme-switcher-title {
+            margin-bottom: 0;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .theme-icon-buttons {
+            display: flex;
+            gap: 3px;
+
+            padding: 3px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+        }
+
+        .theme-icon-buttons .theme-btn {
+            appearance: none;
+
+            padding: 3px 8px;
+
+            border: 1px solid transparent;
+
+            background: transparent;
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition: all 0.15s ease;
+        }
+
+        .theme-icon-buttons .theme-btn.active {
+            border-color: var(--line);
+
+            background: var(--card);
+            color: var(--ink);
+
+            box-shadow: 2px 2px 0 var(--shadow);
+        }
+
+        body.dark-mode .status-tag {
+            border-color: var(--line);
+
+            background: var(--card);
+            color: var(--ink);
+
+            box-shadow: 4px 4px 0 #000000;
+        }
+
+        body.dark-mode .arrow-icon {
+            border-color: var(--line);
+
+            background: var(--soft);
+            color: var(--ink);
+
+            box-shadow: 4px 4px 0 #000000;
+        }
+
+        body.dark-mode .img-box::after,
+        body.dark-mode .proof-preview::after,
+        body.dark-mode .honor-proof-media::after,
+        body.dark-mode .credential-proof-media::after {
+            background: rgba(0, 0, 0, 0.28);
+        }
+
+        body.dark-mode .project-data-cover {
+            background:
+                linear-gradient(
+                    to right,
+                    transparent 24px,
+                    rgba(255, 255, 255, 0.07) 25px
+                ),
+                linear-gradient(
+                    to bottom,
+                    transparent 24px,
+                    rgba(255, 255, 255, 0.07) 25px
+                ),
+                var(--soft);
+
+            background-size: 25px 25px;
+        }
+
+        body.dark-mode .project-data-type,
+        body.dark-mode .project-data-flow span {
+            background: var(--card);
+            color: var(--ink);
+        }
+
+        body.dark-mode .honor-proof-media,
+        body.dark-mode .credential-proof-media,
+        body.dark-mode .arriview-image-frame {
+            background: #202020;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Pretendard, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .bg-glow-1,
+        .bg-glow-2 {
+            display: none;
+        }
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        body.intro-locked {
+            overflow: hidden;
+        }
+
+        body.intro-locked > nav,
+        body.intro-locked > .main-wrapper {
+            opacity: 0;
+            transform: translateY(24px);
+            pointer-events: none;
+        }
+
+        body.intro-locked > .floating-nav {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body > nav,
+        body > .main-wrapper {
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        body > .floating-nav {
+            transition: opacity 0.7s ease;
+        }
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+
+            display: grid;
+            place-items: center;
+
+            padding: 1.5rem;
+
+            overflow: hidden;
+
+            background: #ffffff;
+            color: #111111;
+
+            transition:
+                transform 0.9s cubic-bezier(0.76, 0, 0.24, 1),
+                opacity 0.6s ease;
+        }
+
+        .intro-screen.is-leaving {
+            transform: translateY(-105%);
+            opacity: 0.98;
+            pointer-events: none;
+        }
+
+        .intro-stage {
+            width: min(900px, 94vw);
+
+            display: grid;
+            place-items: center;
+
+            text-align: center;
+
+            opacity: 0;
+            transform: translateY(18px);
+
+            animation: introShow 0.75s 0.15s forwards;
+        }
+
+        .intro-name-scene,
+        .intro-role-scene {
+            grid-area: 1 / 1;
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            transition:
+                opacity 0.55s ease,
+                transform 0.55s ease,
+                filter 0.55s ease;
+        }
+
+        .intro-role-scene {
+            opacity: 0;
+            transform: translateY(22px);
+            filter: blur(7px);
+            pointer-events: none;
+        }
+
+        .intro-stage.show-role .intro-name-scene {
+            opacity: 0;
+            transform: translateY(-20px);
+            filter: blur(7px);
+            pointer-events: none;
+        }
+
+        .intro-stage.show-role .intro-role-scene {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+            pointer-events: auto;
+        }
+
+        .intro-name-line {
+            font-family: var(--mono);
+            font-size: clamp(1.4rem, 3.4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.07em;
+        }
+
+        .intro-name-line strong {
+            font: inherit;
+        }
+
+        .intro-role-line {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.18em;
+
+            font-family: var(--mono);
+            font-size: clamp(1.05rem, 2.4vw, 2rem);
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .intro-drop-zone {
+            min-width: 8.6em;
+
+            padding: 0.05em 0.12em 0.14em;
+
+            border-bottom: 3px solid #555555;
+
+            color: #777777;
+            font-style: italic;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .intro-drop-zone.is-over {
+            background: #eeeeee;
+            color: #111111;
+
+            box-shadow: 0 0 0 9px #eeeeee;
+        }
+
+        .intro-role-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 7px;
+
+            margin-top: 1.4rem;
+            padding: 10px 13px;
+
+            border: 1px dashed #222222;
+        }
+
+        .intro-role {
+            appearance: none;
+
+            padding: 3px 7px;
+
+            border: 0;
+
+            background: transparent;
+            color: #111111;
+
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+
+            cursor: grab;
+
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .intro-role::before {
+            content: "[ ";
+            color: #666666;
+        }
+
+        .intro-role::after {
+            content: " ]";
+            color: #666666;
+        }
+
+        .intro-role:hover {
+            transform: translateY(-2px);
+        }
+
+        .intro-role:active {
+            cursor: grabbing;
+        }
+
+        .intro-hint {
+            margin-top: 0.75rem;
+
+            color: #999999;
+
+            font-size: 0.7rem;
+        }
+
+        .intro-stage.is-complete .intro-role-list,
+        .intro-stage.is-complete .intro-hint {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-character {
+            display: block;
+
+            width: clamp(190px, 27vw, 300px);
+            height: auto;
+
+            margin-top: 1rem;
+
+            object-fit: contain;
+
+            pointer-events: none;
+            user-select: none;
+
+            filter:
+                drop-shadow(
+                    0 14px 20px rgba(0, 0, 0, 0.07)
+                );
+
+            animation:
+                introCharacterFloat
+                2.8s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+        .intro-character.role-character {
+            width: clamp(180px, 25vw, 270px);
+        }
+
+        @keyframes introShow {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes introCharacterFloat {
+            to {
+                transform: translateY(-7px);
+            }
+        }
+        
+        /* =====================================================
+        SIDEBAR (글자 크기 및 가독성 업스케일링 버전)
+        ===================================================== */
+
+        nav {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 1000;
+
+            width: 310px;
+            height: 100vh;
+
+            padding: 1.4rem 1.4rem 1.2rem;
+
+            overflow: hidden;
+
+            border-right: 1.5px solid var(--line);
+            background: var(--card);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav-top-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem; /* 각 정보 섹션 사이 간격 적절히 유지 */
+        }
+
+        .logo {
+            appearance: none;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+
+            text-align: left;
+            font-family: var(--mono);
+            font-size: 1.35rem; /* 로고 글씨 확대 */
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: 0.06em;
+
+            cursor: pointer;
+        }
+
+        /* 프로필 박스 높이를 줄여 글자 들어갈 공간 확보 */
+        .profile-img-frame {
+            width: 145px;
+            margin: 0.1rem auto;
+
+            overflow: hidden;
+            border: 1.5px solid var(--line);
+            background: var(--card);
+            box-shadow: 5px 5px 0 var(--shadow);
+        }
+
+        .profile-img-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .info-section {
+            margin: 0;
+        }
+
+        .info-section h3 {
+            margin: 0 0 0.35rem;
+            padding-bottom: 3px;
+
+            border-bottom: 1.5px solid var(--line);
+
+            font-family: var(--mono);
+            font-size: 0.82rem; /* 카테고리 제목(연락처, 언어, 학력) 확대 */
+            font-weight: 800;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem; /* 항목 간 간격 */
+
+            list-style: none;
+            font-size: 0.88rem; /* 본문 텍스트 큼직하게 확대 */
+            font-weight: 500;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+        }
+
+        .info-list a,
+        .info-list button {
+            appearance: none;
+            border: 0;
+            border-bottom: 1px dashed var(--muted);
+            background: transparent;
+            color: var(--ink);
+
+            font: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 하단 테마 스위처 레이아웃 */
+        .nav-center-wrapper {
+            margin-top: auto;
+            padding-top: 0.8rem;
+        }
+
+        .theme-switcher {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-top: 0.65rem;
+
+            border-top: 1.5px solid var(--line);
+        }
+
+        .theme-switcher-title {
+            margin-bottom: 0;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.7rem; /* THEME 타이틀 확대 */
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .theme-icon-buttons {
+            display: flex;
+            gap: 3px;
+
+            padding: 3px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+        }
+
+        .theme-icon-buttons .theme-btn {
+            appearance: none;
+
+            padding: 4px 9px;
+
+            border: 1px solid transparent;
+
+            background: transparent;
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition: all 0.15s ease;
+        }
+
+        .theme-icon-buttons .theme-btn.active {
+            border-color: var(--line);
+
+            background: var(--card);
+            color: var(--ink);
+
+            box-shadow: 2px 2px 0 var(--shadow);
+        }
+
+        /* 페이지 상단 고정 메뉴 */
+
+        .floating-nav {
+            position: fixed;
+            top: 18px;
+            left: calc(310px + ((100vw - 310px) / 2));
+            z-index: 1500;
+
+            max-width: calc(100vw - 350px);
+
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            padding: 5px;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 6px 6px 0 var(--shadow);
+
+            transform: translateX(-50%);
+
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .floating-nav::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        .floating-nav a {
+            flex: 0 0 auto;
+
+            padding: 8px 13px;
+
+            border: 1px solid transparent;
+
+            color: var(--ink);
+
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 800;
+            line-height: 1;
+            text-decoration: none;
+            white-space: nowrap;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .floating-nav a:hover {
+            border-color: var(--line);
+
+            background: var(--soft);
+
+            transform: translateY(-1px);
+        }
+
+        .floating-nav a.active {
+            border-color: var(--ink);
+
+            background: var(--ink);
+            color: var(--card);
+        }
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main-wrapper {
+            margin-left: 310px;
+        }
+
+        .hero {
+            min-height: 76vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding:
+                7rem
+                clamp(3rem, 7vw, 7.5rem)
+                5.5rem;
+
+            border-bottom: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .hero h1 {
+            max-width: 1120px;
+
+            margin-bottom: 2.2rem;
+
+            font-size: clamp(2.8rem, 4.2vw, 4.5rem);
+            font-weight: 820;
+            line-height: 1.18;
+            letter-spacing: -0.058em;
+
+            word-break: keep-all;
+        }
+
+        .hero-second-line,
+        .gradient-text {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .hero p {
+            max-width: 850px;
+
+            padding-left: 1.25rem;
+
+            border-left: 3px solid var(--line);
+
+            color: var(--muted);
+
+            font-size: 1.03rem;
+            line-height: 1.85;
+
+            word-break: keep-all;
+        }
+
+        .hero-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+
+            margin-top: 1.8rem;
+            padding-left: 1.25rem;
+        }
+
+        .hero-fields span {
+            padding: 0.45rem 0.7rem;
+
+            border: 1px solid var(--line);
+
+            background: var(--soft);
+
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+
+        section {
+            max-width: 1280px;
+
+            margin: 0 auto;
+            padding: 100px 7.5%;
+        }
+
+        .page-section {
+            scroll-margin-top: 92px;
+        }
+
+        .page-section + .page-section {
+            border-top: 1.5px solid var(--line);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            margin-bottom: 3.2rem;
+            padding-bottom: 0.8rem;
+
+            border-bottom: 1.5px solid var(--line);
+
+            font-family: var(--mono);
+            font-size: clamp(1.65rem, 3vw, 2.55rem);
+            font-weight: 500;
+        }
+
+        .badge-count {
+            padding: 3px 9px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           PROJECT CARDS
+        ===================================================== */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 9px 9px 0 var(--shadow);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translate(-3px, -3px);
+
+            box-shadow: 13px 13px 0 var(--shadow);
+        }
+
+        .img-box {
+            --thumb-image: none;
+
+            position: relative;
+            isolation: isolate;
+
+            width: 100%;
+            aspect-ratio: 16 / 10;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            background: var(--soft);
+        }
+
+        .img-box::before {
+            content: "";
+
+            position: absolute;
+            inset: -30px;
+
+            background-image: var(--thumb-image);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            filter:
+                blur(24px)
+                saturate(0.75);
+
+            transform: scale(1.08);
+
+            opacity: 0.3;
+        }
+
+        .img-box::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: rgba(255, 255, 255, 0.24);
+        }
+
+        .img-box img {
+            position: relative;
+            z-index: 1;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 10px;
+
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            z-index: 5;
+
+            padding: 7px 12px;
+
+            border: 1.5px solid #111111;
+
+            background: #ffffff;
+
+            box-shadow: 4px 4px 0 #aaaaaa;
+
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .arrow-icon {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 6;
+
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1.5px solid #111111;
+
+            background: #cccccc;
+
+            box-shadow: 4px 4px 0 #111111;
+
+            font-size: 1.4rem;
+
+            opacity: 0;
+
+            transition: opacity 0.2s ease;
+        }
+
+        .project-card:hover .arrow-icon {
+            opacity: 1;
+        }
+
+        .info-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 4;
+
+            padding: 4rem 2rem 1.8rem;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0, 0, 0, 0.93)
+                );
+
+            color: #ffffff;
+
+            opacity: 0;
+
+            transition: opacity 0.25s ease;
+        }
+
+        .project-card:hover .info-overlay {
+            opacity: 1;
+        }
+
+        .info-overlay h3 {
+            margin-bottom: 7px;
+
+            font-family: var(--mono);
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .info-overlay p {
+            color: rgba(255, 255, 255, 0.87);
+
+            font-size: 0.95rem;
+        }
+
+        /* 이미지가 없는 프로젝트 썸네일 */
+
+        .project-data-cover {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            padding: 5.4rem 1.5rem 1.5rem;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent 24px,
+                    rgba(0, 0, 0, 0.07) 25px
+                ),
+                linear-gradient(
+                    to bottom,
+                    transparent 24px,
+                    rgba(0, 0, 0, 0.07) 25px
+                ),
+                var(--soft);
+
+            background-size: 25px 25px;
+        }
+
+        .project-data-type {
+            width: max-content;
+
+            padding: 0.42rem 0.6rem;
+
+            border: 1px solid var(--line);
+
+            background: var(--card);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .project-data-title {
+            display: block;
+
+            margin: 0.9rem 0 auto;
+
+            font-family: var(--mono);
+            font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+            line-height: 1.08;
+            letter-spacing: -0.06em;
+        }
+
+        .project-data-flow {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+
+            margin-bottom: 1rem;
+
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .project-data-flow span {
+            padding: 0.42rem 0.55rem;
+
+            border: 1px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .project-data-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            border-top: 1.5px solid var(--line);
+        }
+
+        .project-data-metrics > div {
+            padding-top: 0.9rem;
+        }
+
+        .project-data-metrics > div + div {
+            padding-left: 1rem;
+
+            border-left: 1px solid var(--line);
+        }
+
+        .project-data-metrics strong,
+        .project-data-metrics span {
+            display: block;
+        }
+
+        .project-data-metrics strong {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+        }
+
+        .project-data-metrics span {
+            margin-top: 0.25rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.63rem;
+        }
+
+        /* =====================================================
+           EXPERIENCE
+        ===================================================== */
+
+        .timeline-container {
+            position: relative;
+
+            padding-left: 2.2rem;
+        }
+
+        .timeline-container::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 7px;
+
+            border-left: 2px dashed var(--line);
+        }
+
+        .timeline-item {
+            position: relative;
+
+            margin-bottom: 3.3rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 7px;
+            left: -2.2rem;
+
+            width: 16px;
+            height: 16px;
+
+            border: 2px solid var(--line);
+
+            background: var(--bg);
+        }
+
+        .timeline-content {
+            padding: 2rem 2.2rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 8px 8px 0 var(--shadow);
+        }
+
+        .timeline-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .timeline-title {
+            font-family: var(--mono);
+            font-size: 1.18rem;
+            font-weight: 600;
+        }
+
+        .timeline-period {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        .timeline-institution-line {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+
+            margin: 12px 0 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .badge {
+            flex: 0 0 68px;
+
+            padding: 4px;
+
+            border: 1px solid var(--line);
+
+            text-align: center;
+
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .content {
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .timeline-desc {
+            color: var(--muted);
+
+            font-size: 0.98rem;
+            line-height: 1.75;
+            text-align: justify;
+        }
+
+        .experience-detail-grid {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr)
+                310px;
+
+            align-items: start;
+            gap: 2rem;
+
+            margin-top: 1rem;
+        }
+
+        .experience-copy {
+            min-width: 0;
+            padding-top: 3.6rem;
+        }
+
+        .proof-card {
+            --proof-image: none;
+
+            min-width: 0;
+
+            padding: 0.72rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 5px 5px 0 var(--shadow);
+        }
+
+        .proof-card-top,
+        .proof-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .proof-card-top {
+            padding-bottom: 0.6rem;
+
+            border-bottom: 1px solid rgba(153, 153, 153, 0.4);
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .proof-preview {
+            position: relative;
+            isolation: isolate;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            margin-top: 0.7rem;
+
+            border: 1px solid #999999;
+
+            background: var(--soft);
+        }
+
+        .proof-preview::before {
+            content: "";
+
+            position: absolute;
+            inset: -22px;
+
+            background-image: var(--proof-image);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            filter: blur(18px);
+
+            transform: scale(1.08);
+
+            opacity: 0.17;
+        }
+
+        .proof-preview::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .proof-preview img {
+            position: relative;
+            z-index: 1;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 0.55rem;
+
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .proof-card.landscape .proof-preview {
+            aspect-ratio: 4 / 3;
+        }
+
+        .proof-card.portrait .proof-preview {
+            aspect-ratio: 3 / 4;
+        }
+
+        .proof-card.photo .proof-preview {
+            aspect-ratio: 16 / 10;
+        }
+
+        .proof-card.certificate .proof-preview {
+            aspect-ratio: 3 / 4;
+        }
+
+        .proof-caption {
+            padding: 0.75rem 0.1rem 0.1rem;
+        }
+
+        .proof-caption div {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .proof-caption strong {
+            font-size: 0.83rem;
+        }
+
+        .proof-caption span {
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            line-height: 1.4;
+        }
+
+        .proof-index {
+            flex-shrink: 0;
+
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 700;
+        }
+
+        .proof-gallery {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.35fr)
+                minmax(240px, 0.65fr);
+
+            align-items: start;
+            gap: 1.2rem;
+
+            margin-top: 1.6rem;
+        }
+
+        /* =====================================================
+           HONORS
+        ===================================================== */
+
+        .honors-stack {
+            display: grid;
+            gap: 2.4rem;
+        }
+
+        .honor-card {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(280px, 34%);
+
+            align-items: stretch;
+
+            overflow: hidden;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 9px 9px 0 var(--shadow);
+        }
+
+        .honor-copy {
+            display: flex;
+            flex-direction: column;
+
+            padding: 2.7rem 2.6rem;
+        }
+
+        .honor-kicker,
+        .credential-kicker {
+            display: block;
+
+            margin-bottom: 1.3rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .honor-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .honor-heading h3 {
+            margin-bottom: 0.8rem;
+
+            font-family: var(--mono);
+            font-size: clamp(1.55rem, 2.3vw, 2.25rem);
+            font-weight: 650;
+            line-height: 1.3;
+            letter-spacing: -0.04em;
+        }
+
+        .honor-result {
+            display: inline-block;
+
+            padding: 6px 11px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .honor-description {
+            max-width: 680px;
+
+            margin-bottom: 2rem;
+
+            color: var(--muted);
+
+            font-size: 1rem;
+            line-height: 1.8;
+
+            word-break: keep-all;
+        }
+
+        .honor-info {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: 1rem;
+
+            margin-top: auto;
+            padding-top: 1.5rem;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .honor-info div,
+        .credential-info div {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .honor-info span,
+        .credential-info span {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .honor-info strong,
+        .credential-info strong {
+            font-size: 0.85rem;
+            line-height: 1.45;
+        }
+
+        .honor-proof {
+            --proof-bg: none;
+
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 1rem;
+
+            border-left: 1.5px solid var(--line);
+
+            background: var(--soft);
+        }
+
+        .honor-proof-media {
+            position: relative;
+            isolation: isolate;
+
+            flex: 1;
+
+            min-height: 390px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(17, 17, 17, 0.4);
+
+            background: #eeeeea;
+        }
+
+        .honor-proof-media::before,
+        .credential-proof-media::before {
+            content: "";
+
+            position: absolute;
+            inset: -25px;
+
+            background-image: var(--proof-bg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            filter:
+                blur(22px)
+                saturate(0.7);
+
+            transform: scale(1.08);
+
+            opacity: 0.15;
+        }
+
+        .honor-proof-media::after,
+        .credential-proof-media::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .honor-proof img {
+            position: relative;
+            z-index: 1;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 10px;
+
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .honor-proof figcaption,
+        .credential-proof figcaption {
+            padding: 0.8rem 0.15rem 0;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           CERTIFICATES
+        ===================================================== */
+
+        #certifications {
+            scroll-margin-top: 92px;
+        }
+
+        .credential-card {
+            width: min(100%, 1000px);
+
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr)
+                390px;
+
+            margin: 0 auto;
+
+            overflow: hidden;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 9px 9px 0 var(--shadow);
+        }
+
+        .credential-copy {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 3rem;
+        }
+
+        .credential-kicker {
+            margin-bottom: 1.6rem;
+        }
+
+        .credential-copy h3 {
+            margin-bottom: 0.2rem;
+
+            font-family: var(--mono);
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 750;
+            line-height: 1;
+            letter-spacing: -0.06em;
+        }
+
+        .credential-name {
+            margin-bottom: 1.6rem;
+
+            color: var(--ink);
+
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .credential-description {
+            max-width: 540px;
+
+            margin-bottom: 2.4rem;
+
+            color: var(--muted);
+
+            font-size: 0.98rem;
+            line-height: 1.75;
+
+            word-break: keep-all;
+        }
+
+        .credential-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+
+            margin-top: auto;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .credential-info > div {
+            display: grid;
+            grid-template-columns:
+                100px
+                minmax(0, 1fr);
+
+            gap: 1.2rem;
+
+            padding: 0.9rem 0;
+
+            border-bottom: 1px solid rgba(17, 17, 17, 0.25);
+        }
+
+        .credential-info > div span,
+        .credential-info > div strong {
+            display: block;
+        }
+
+        .credential-proof {
+            --proof-bg: none;
+
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 1.2rem;
+
+            border-left: 1.5px solid var(--line);
+
+            background: var(--soft);
+        }
+
+        .credential-proof-media {
+            position: relative;
+            isolation: isolate;
+
+            min-height: 510px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(17, 17, 17, 0.45);
+
+            background: #efefeb;
+        }
+
+        .credential-proof img {
+            position: relative;
+            z-index: 1;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 14px;
+
+            object-fit: contain;
+            object-position: center;
+        }
+
+        /* 자격증 카드 간 간격 */
+        .credential-card + .credential-card {
+            margin-top: 2.8rem;
+        }
+
+        /* OPIc 증빙 이미지 2장 */
+        .credential-proof-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .opic-proof .credential-proof-media {
+            min-height: 0;
+            aspect-ratio: 3 / 4;
+        }
+
+        .opic-proof .credential-proof-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* =====================================================
+           ARRIVIEW MODAL
+        ===================================================== */
+
+        .arriview-intro,
+        .case-intro {
+            margin-bottom: 2.4rem;
+            padding: 1.6rem 0 1.8rem;
+
+            border-top: 1.5px solid var(--line);
+            border-bottom: 1.5px solid var(--line);
+        }
+
+        .arriview-index,
+        .case-index {
+            display: block;
+
+            margin-bottom: 0.8rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .arriview-lead,
+        .case-lead {
+            max-width: 860px;
+
+            margin: 0 !important;
+
+            color: var(--ink) !important;
+
+            font-size: 1.12rem !important;
+            font-weight: 650;
+            line-height: 1.8 !important;
+
+            text-align: left !important;
+            word-break: keep-all;
+        }
+
+        .arriview-media {
+            margin: 2rem 0 2.8rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            box-shadow: 7px 7px 0 var(--shadow);
+        }
+
+        .arriview-image-frame {
+            overflow: hidden;
+
+            background: #f2f2ef;
+        }
+
+        .arriview-media img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            margin: 0 !important;
+
+            border: 0 !important;
+
+            object-fit: contain;
+        }
+
+        .arriview-media figcaption {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+
+            padding: 0.9rem 1rem;
+
+            border-top: 1.5px solid var(--line);
+
+            font-family: var(--mono);
+        }
+
+        .arriview-media figcaption strong {
+            flex-shrink: 0;
+
+            font-size: 0.72rem;
+        }
+
+        .arriview-media figcaption span {
+            max-width: 560px;
+
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            line-height: 1.5;
+            text-align: right;
+        }
+
+        .arriview-result-media {
+            max-width: 880px;
+
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .arriview-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .arriview-feature-card {
+            min-height: 190px;
+
+            padding: 1.45rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .arriview-feature-card > span {
+            display: block;
+
+            margin-bottom: 1.5rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .arriview-feature-card strong {
+            display: block;
+
+            margin-bottom: 0.7rem;
+
+            font-family: var(--mono);
+            font-size: 1rem;
+        }
+
+        .arriview-feature-card p {
+            margin: 0 !important;
+
+            font-size: 0.85rem !important;
+            line-height: 1.65 !important;
+            text-align: left !important;
+        }
+
+        .arriview-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.4rem;
+
+            margin: 1.5rem 0 3rem;
+        }
+
+        .arriview-gallery .arriview-media {
+            margin: 0;
+        }
+
+        .arriview-gallery .arriview-media figcaption {
+            min-height: 86px;
+
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .arriview-gallery .arriview-media figcaption span {
+            text-align: left;
+        }
+
+        .arriview-process {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr)
+                auto
+                minmax(0, 1fr)
+                auto
+                minmax(0, 1fr);
+
+            align-items: stretch;
+            gap: 0.7rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .arriview-process-item {
+            display: grid;
+            grid-template-columns:
+                32px
+                minmax(0, 1fr);
+
+            gap: 0.8rem;
+
+            padding: 1.2rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .arriview-process-item > span {
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--line);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .arriview-process-item strong {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        .arriview-process-item p {
+            margin: 0.5rem 0 0 !important;
+
+            font-size: 0.76rem !important;
+            line-height: 1.55 !important;
+            text-align: left !important;
+        }
+
+        .arriview-process-arrow {
+            display: grid;
+            place-items: center;
+
+            font-family: var(--mono);
+            font-size: 1.2rem;
+        }
+
+        .arriview-metric-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .arriview-metric {
+            padding: 1.5rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            text-align: center;
+        }
+
+        .arriview-metric span {
+            display: block;
+
+            margin-bottom: 0.8rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .arriview-metric strong {
+            display: block;
+
+            font-family: var(--mono);
+            font-size: 1.65rem;
+            line-height: 1;
+        }
+
+        .arriview-metric p {
+            margin: 0.7rem 0 0 !important;
+
+            font-size: 0.72rem !important;
+            text-align: center !important;
+        }
+
+        .arriview-result-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            margin: 2.5rem 0 3rem;
+
+            border-top: 1.5px solid var(--line);
+            border-bottom: 1.5px solid var(--line);
+        }
+
+        .arriview-result-summary > div {
+            padding: 1.4rem;
+        }
+
+        .arriview-result-summary > div + div {
+            border-left: 1px solid var(--line);
+        }
+
+        .arriview-result-summary span {
+            display: block;
+
+            margin-bottom: 1rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .arriview-result-summary strong {
+            display: block;
+
+            margin-bottom: 0.6rem;
+
+            font-family: var(--mono);
+            font-size: 0.9rem;
+        }
+
+        .arriview-result-summary p {
+            margin: 0 !important;
+
+            font-size: 0.78rem !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+        }
+
+        /* =====================================================
+           DATA PROJECT MODAL
+        ===================================================== */
+
+        .case-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .case-kpi {
+            padding: 1.5rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            text-align: center;
+        }
+
+        .case-kpi span {
+            display: block;
+
+            margin-bottom: 0.8rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .case-kpi strong {
+            display: block;
+
+            font-family: var(--mono);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            line-height: 1;
+        }
+
+        .case-kpi p {
+            margin: 0.7rem 0 0 !important;
+
+            font-size: 0.72rem !important;
+            text-align: center !important;
+        }
+
+        .case-flow {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr)
+                auto
+                minmax(0, 1fr)
+                auto
+                minmax(0, 1fr)
+                auto
+                minmax(0, 1fr);
+
+            align-items: stretch;
+            gap: 0.55rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .case-flow-item {
+            padding: 1rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .case-flow-item > span {
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 1rem;
+
+            border: 1px solid var(--line);
+
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            font-weight: 700;
+        }
+
+        .case-flow-item strong {
+            display: block;
+
+            margin-bottom: 0.55rem;
+
+            font-family: var(--mono);
+            font-size: 0.78rem;
+        }
+
+        .case-flow-item p {
+            margin: 0 !important;
+
+            font-size: 0.73rem !important;
+            line-height: 1.55 !important;
+            text-align: left !important;
+        }
+
+        .case-flow-arrow {
+            display: grid;
+            place-items: center;
+
+            font-family: var(--mono);
+            font-size: 1.1rem;
+        }
+
+        .case-result-panel {
+            margin: 2rem 0 3rem;
+            padding: 1.8rem;
+
+            border: 1.5px solid var(--line);
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent 24px,
+                    rgba(0, 0, 0, 0.06) 25px
+                ),
+                linear-gradient(
+                    to bottom,
+                    transparent 24px,
+                    rgba(0, 0, 0, 0.06) 25px
+                ),
+                var(--soft);
+
+            background-size: 25px 25px;
+
+            text-align: center;
+        }
+
+        .case-result-panel > span {
+            display: block;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+        }
+
+        .case-result-values {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+
+            margin: 1.5rem 0 1rem;
+        }
+
+        .case-result-values strong {
+            font-family: var(--mono);
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1;
+        }
+
+        .case-result-values b {
+            font-family: var(--mono);
+            font-size: 1.5rem;
+        }
+
+        .case-result-panel p {
+            margin: 0 !important;
+
+            font-size: 0.82rem !important;
+            text-align: center !important;
+        }
+
+        .case-cohort-grid,
+        .case-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+
+            margin: 2rem 0 3rem;
+        }
+
+        .case-cohort,
+        .case-feature-grid > div {
+            padding: 1.35rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .case-cohort > span,
+        .case-feature-grid span {
+            display: block;
+
+            margin-bottom: 1.2rem;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .case-cohort strong,
+        .case-feature-grid strong {
+            display: block;
+
+            margin-bottom: 0.7rem;
+
+            font-family: var(--mono);
+            font-size: 0.94rem;
+        }
+
+        .case-cohort p,
+        .case-feature-grid p {
+            margin: 0 !important;
+
+            font-size: 0.78rem !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+        }
+
+
+
+        /* =====================================================
+           UNIFIED PROJECT DETAIL DESIGN (P2-P5 ONLY)
+           기존 내용은 유지하고 시각 체계만 P6/P7과 통일
+        ===================================================== */
+
+        .detail-content.unified-project-modal > h2 {
+            max-width: 900px;
+            margin-bottom: 0;
+        }
+
+        .detail-content.unified-project-modal > .detail-tags {
+            margin-bottom: 2rem;
+        }
+
+        .detail-content.unified-project-modal > h4 {
+            margin: 3.2rem 0 1.25rem;
+            padding: 0.95rem 1.1rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            box-shadow: 5px 5px 0 var(--shadow);
+
+            font-family: var(--mono);
+            font-size: 0.94rem;
+            font-weight: 750;
+            line-height: 1.45;
+        }
+
+        .detail-content.unified-project-modal > h4:first-of-type {
+            margin-top: 0;
+        }
+
+        .detail-content.unified-project-modal:not(.project-p4)
+        > h4:first-of-type + p {
+            max-width: none;
+
+            margin: 0 0 2.7rem !important;
+            padding: 1.6rem 0 1.8rem;
+
+            border-top: 1.5px solid var(--line);
+            border-bottom: 1.5px solid var(--line);
+            border-left: 0;
+
+            color: var(--ink);
+
+            font-size: 1.12rem;
+            font-weight: 650;
+            line-height: 1.8;
+            text-align: left;
+            word-break: keep-all;
+        }
+
+        .detail-content.unified-project-modal
+        > p:not(.arriview-lead) {
+            max-width: 900px;
+
+            margin-bottom: 1.4rem;
+            padding-left: 1.05rem;
+
+            border-left: 2px solid var(--line);
+
+            text-align: left;
+            word-break: keep-all;
+        }
+
+        .detail-content.unified-project-modal:not(.project-p4)
+        > h4:first-of-type + p {
+            padding-left: 0;
+        }
+
+        .detail-content.unified-project-modal > img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            margin: 1.8rem 0 3rem;
+            padding: 0.8rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            box-shadow: 7px 7px 0 var(--shadow);
+
+            object-fit: contain;
+        }
+
+        .detail-content.unified-project-modal > img[style] {
+            width: min(48%, 430px) !important;
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .detail-content.unified-project-modal > .img-row {
+            gap: 0.9rem;
+
+            margin: 1.8rem 0 3rem;
+            padding: 0.8rem;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+
+            box-shadow: 7px 7px 0 var(--shadow);
+        }
+
+        .detail-content.unified-project-modal > .img-row img {
+            width: 100%;
+            height: 100%;
+
+            margin: 0;
+            padding: 0;
+
+            border: 1px solid var(--line);
+
+            background: var(--card);
+
+            object-fit: contain;
+        }
+
+        .detail-content.unified-project-modal > .btn-container {
+            margin-top: 2.8rem;
+            padding-top: 1.4rem;
+
+            border-top: 1.5px solid var(--line);
+        }
+
+        .detail-content.unified-project-modal
+        > .btn-container .action-link-btn {
+            box-shadow: 4px 4px 0 var(--shadow);
+        }
+
+        .detail-content.unified-project-modal.project-p4
+        > .arriview-intro {
+            margin-top: 0;
+        }
+
+        .detail-content.unified-project-modal.project-p4 > h4 {
+            margin-top: 3.2rem;
+        }
+
+        .detail-content.unified-project-modal.project-p4 > p {
+            max-width: 900px;
+        }
+
+        body.dark-mode
+        .detail-content.unified-project-modal > img,
+        body.dark-mode
+        .detail-content.unified-project-modal > .img-row {
+            background: var(--soft);
+        }
+
+        @media (max-width: 760px) {
+            .detail-content.unified-project-modal > h4 {
+                margin-top: 2.5rem;
+                padding: 0.85rem 0.9rem;
+
+                font-size: 0.86rem;
+            }
+
+            .detail-content.unified-project-modal:not(.project-p4)
+            > h4:first-of-type + p {
+                padding: 1.25rem 0 1.4rem;
+
+                font-size: 1rem;
+            }
+
+            .detail-content.unified-project-modal
+            > p:not(.arriview-lead) {
+                padding-left: 0.85rem;
+            }
+
+            .detail-content.unified-project-modal > img,
+            .detail-content.unified-project-modal > .img-row {
+                margin-bottom: 2.3rem;
+                padding: 0.55rem;
+
+                box-shadow: 5px 5px 0 var(--shadow);
+            }
+
+            .detail-content.unified-project-modal > img[style] {
+                width: min(78%, 430px) !important;
+            }
+        }
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        #detailViewer {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+
+            display: none;
+            place-items: center;
+
+            padding: 24px;
+
+            background: rgba(0, 0, 0, 0.78);
+        }
+
+        .modal-window {
+            width: min(1100px, 90%);
+            height: 88vh;
+
+            overflow-y: auto;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+
+            box-shadow: 14px 14px 0 var(--shadow);
+        }
+
+        .modal-header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+
+            height: 70px;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            padding: 0 30px;
+
+            border-bottom: 1.5px solid var(--line);
+
+            background: var(--card);
+        }
+
+        .close-btn {
+            appearance: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--card);
+            color: var(--ink);
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .detail-content {
+            padding: 2rem 5rem 5rem;
+        }
+
+        .detail-content h2 {
+            font-family: var(--mono);
+            font-size: 2.35rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .detail-tags {
+            display: block;
+
+            margin: 12px 0 38px;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .detail-content h4 {
+            margin: 3rem 0 1.2rem;
+            padding-left: 15px;
+
+            border-left: 5px solid var(--line);
+        }
+
+        .detail-content p {
+            margin-bottom: 1.4rem;
+
+            color: var(--muted);
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .detail-content img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            margin: 1.7rem 0;
+
+            border: 1.5px solid var(--line);
+        }
+
+        .img-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .btn-container {
+            margin-top: 25px;
+        }
+
+        .action-link-btn {
+            display: inline-block;
+
+            padding: 13px 22px;
+
+            border: 1.5px solid var(--line);
+
+            background: var(--soft);
+            color: var(--ink);
+
+            font-family: var(--mono);
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* =====================================================
+        OPIC FLIP CARD
+        ===================================================== */
+
+        .opic-flip-card {
+            appearance: none;
+
+            width: 100%;
+            height: 510px;
+
+            padding: 0;
+
+            border: 0;
+
+            background: transparent;
+            color: inherit;
+
+            cursor: pointer;
+
+            perspective: 1200px;
+        }
+
+        .opic-flip-inner {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            transition: transform 0.7s
+                cubic-bezier(0.4, 0.2, 0.2, 1);
+
+            transform-style: preserve-3d;
+        }
+
+        .opic-flip-card.is-flipped .opic-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .opic-flip-face {
+            position: absolute;
+            inset: 0;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(17, 17, 17, 0.45);
+
+            background: #efefeb;
+
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .opic-flip-back {
+            transform: rotateY(180deg);
+        }
+
+        .opic-flip-face img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 14px;
+
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .opic-flip-hint {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+
+            padding: 6px 9px;
+
+            border: 1px solid #111;
+
+            background: rgba(255, 255, 255, 0.92);
+            color: #111;
+
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        /* =====================================================
+        CONTACT (세련된 미니 칩 버튼)
+        ===================================================== */
+
+        #contact {
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 70px;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.2rem auto 0;
+        }
+
+        .contact-card-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 22px;
+            border: 1.5px solid var(--line);
+            background: var(--card);
+            color: var(--ink);
+            box-shadow: 4px 4px 0 var(--shadow);
+            font: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .contact-card-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--shadow);
+            background: var(--soft);
+        }
+
+        .icon-wrapper {
+            width: auto;
+            height: auto;
+            margin: 0;
+            border: none; /* 아이콘 상자 테두리 제거 */
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-wrapper svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .contact-card-btn .label {
+            display: none;
+        }
+
+        .contact-card-btn .value {
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .copy-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            z-index: 4000;
+
+            padding: 10px 16px;
+
+            background: #111111;
+            color: #ffffff;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transform: translate(-50%, 12px);
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+
+            transform: translate(-50%, 0);
+        }
+        .model-spec {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+
+            margin: 1.5rem 0 2.5rem;
+            padding: 0.85rem 1rem;
+
+            border: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .model-spec span {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+        }
+
+        .model-spec code {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+            nav {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                border-right: 0;
+                border-bottom: 1.5px solid var(--line);
+            }
+
+            .nav-top-block {
+                display: grid;
+                grid-template-columns:
+                    180px
+                    repeat(3, minmax(0, 1fr));
+            }
+
+            .profile-img-frame {
+                grid-column: 1;
+                grid-row: 2 / 5;
+            }
+
+            .floating-nav {
+                position: sticky;
+                top: 0;
+                left: auto;
+                z-index: 1500;
+
+                width: 100%;
+                max-width: none;
+
+                justify-content: center;
+
+                border-right: 0;
+                border-left: 0;
+
+                box-shadow: 0 5px 0 var(--shadow);
+
+                transform: none;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+            }
+
+            .hero {
+                min-height: 72vh;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .honor-card {
+                grid-template-columns: 1fr;
+            }
+
+            .honor-proof {
+                border-top: 1.5px solid var(--line);
+                border-left: 0;
+            }
+
+            .honor-proof-media {
+                min-height: 520px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .experience-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proof-card.landscape,
+            .proof-card.portrait {
+                width: min(100%, 520px);
+            }
+
+            .proof-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 850px) {
+            .credential-card {
+                grid-template-columns: 1fr;
+            }
+
+            .credential-copy {
+                padding: 2rem;
+            }
+
+            .credential-proof {
+                border-top: 1.5px solid var(--line);
+                border-left: 0;
+            }
+
+            .credential-proof-media {
+                min-height: 520px;
+            }
+
+            .arriview-feature-grid,
+            .arriview-metric-row,
+            .arriview-result-summary,
+            .case-kpi-grid,
+            .case-cohort-grid,
+            .case-feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .arriview-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .arriview-process,
+            .case-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .arriview-process-arrow,
+            .case-flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .arriview-result-summary > div + div {
+                border-top: 1px solid var(--line);
+                border-left: 0;
+            }
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                padding: 1.2rem;
+            }
+
+            .floating-nav {
+                justify-content: flex-start;
+
+                padding: 5px 7px;
+            }
+
+            .floating-nav a {
+                padding: 8px 11px;
+
+                font-size: 0.68rem;
+            }
+
+            .page-section,
+            #certifications {
+                scroll-margin-top: 70px;
+            }
+
+            .nav-top-block {
+                display: flex;
+            }
+
+            .intro-name-line {
+                font-size: clamp(1.15rem, 5.7vw, 1.65rem);
+            }
+
+            .intro-role-line {
+                font-size: clamp(0.95rem, 5vw, 1.3rem);
+            }
+
+            .intro-role-list {
+                max-width: 92vw;
+            }
+
+            .intro-character {
+                width: min(235px, 62vw);
+            }
+
+            .intro-character.role-character {
+                width: min(215px, 57vw);
+            }
+
+            .hero {
+                min-height: 68vh;
+
+                padding: 5rem 7% 4rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 9vw, 3rem);
+            }
+
+            .hero-second-line {
+                white-space: normal;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+
+            .project-grid,
+            .contact-grid,
+            .img-row,
+            .proof-gallery {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container {
+                padding-left: 1.7rem;
+            }
+
+            .timeline-dot {
+                left: -1.7rem;
+            }
+
+            .timeline-content {
+                padding: 1.4rem;
+            }
+
+            .proof-card.landscape,
+            .proof-card.portrait,
+            .proof-card.photo,
+            .proof-card.certificate {
+                width: 100%;
+            }
+
+            .honor-copy,
+            .credential-copy {
+                padding: 1.6rem;
+            }
+
+            .honor-info {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-content {
+                padding:
+                    1.4rem
+                    1.2rem
+                    3rem;
+            }
+
+            .detail-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-card-btn .value {
+                font-size: 0.86rem;
+            }
+
+            .project-data-title {
+                font-size: 1.45rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .arriview-media figcaption {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .arriview-media figcaption span {
+                text-align: left;
+            }
+
+            .arriview-feature-card {
+                min-height: auto;
+            }
+
+            .case-result-values {
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .credential-info > div {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .credential-proof-media {
+                min-height: 400px;
+            }
+
+            .project-data-cover {
+                padding: 4.8rem 1rem 1rem;
+            }
+
+            .project-data-flow {
+                gap: 0.3rem;
+
+                font-size: 0.62rem;
+            }
+
+            .project-data-metrics strong {
+                font-size: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .intro-stage,
+            .intro-character {
+                animation: none !important;
+            }
+
+            .intro-screen,
+            body > nav,
+            body > .main-wrapper {
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* OPIc 카드 뒤집기 안내 */
+        .opic-flip-hint {
+            position: absolute;
+            right: 22px;
+            bottom: 22px;
+
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            z-index: 100;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #111;
+            padding: 7px 9px;
+
+            pointer-events: none;
+        }
+
+        .flip-icon {
+            display: inline-block;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .flip-text {
+            display: inline-block;
+
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            white-space: nowrap;
+
+            transform: translateX(-5px);
+
+            transition:
+                max-width 0.3s ease,
+                opacity 0.2s ease,
+                transform 0.3s ease;
+        }
+
+        /* 카드에 마우스를 올렸을 때 글자 등장 */
+        .opic-flip-inner:hover .flip-text {
+            max-width: 150px;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 클릭 가능한 카드라는 표시 */
+        .opic-flip-inner {
+            cursor: pointer;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =================================================
+         INTRO
+    ================================================== -->
+
+    <div
+        id="introScreen"
+        class="intro-screen"
+        aria-label="포트폴리오 인트로"
+    >
+
+        <div
+            id="introStage"
+            class="intro-stage"
+        >
+            <div
+                class="intro-name-scene"
+                aria-live="polite"
+            >
+                <p class="intro-name-line">
+                    Hi! I'm
+                    <strong>CHOI SEOYOUNG</strong>
+                </p>
+
+                <img
+                    class="intro-character"
+                    src="KakaoTalk_Photo_2026-08-02-23-28-05.png"
+                    alt="손을 흔들며 인사하는 최서영 캐릭터"
+                >
+            </div>
+
+            <div class="intro-role-scene">
+                <div
+                    class="intro-role-line"
+                    aria-live="polite"
+                >
+                    <span>I'm a</span>
+
+                    <span
+                        id="introDropZone"
+                        class="intro-drop-zone"
+                        aria-label="역할을 여기에 드롭하세요"
+                    >
+                        [ Drop Here ]
+                    </span>
+                </div>
+
+                <div
+                    class="intro-role-list"
+                    aria-label="역할 선택"
+                >
+                    <button
+                        type="button"
+                        class="intro-role"
+                        draggable="true"
+                        data-role="Data Scientist"
+                    >
+                        Data Scientist
+                    </button>
+
+                    <button
+                        type="button"
+                        class="intro-role"
+                        draggable="true"
+                        data-role="HCI Researcher"
+                    >
+                        HCI Researcher
+                    </button>
+
+                    <button
+                        type="button"
+                        class="intro-role"
+                        draggable="true"
+                        data-role="AI Engineer"
+                    >
+                        AI Engineer
+                    </button>
+
+                    <button
+                        type="button"
+                        class="intro-role"
+                        draggable="true"
+                        data-role="Frontend Developer"
+                    >
+                        Frontend Developer
+                    </button>
+                </div>
+
+                <p class="intro-hint">
+                    역할을 드래그하거나 눌러 주세요
+                </p>
+
+                <img
+                    class="intro-character role-character"
+                    src="KakaoTalk_Photo_2026-08-02-23-28-13.png"
+                    alt="노트북으로 작업하는 최서영 캐릭터"
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <nav>
+        <div class="nav-top-block">
+            <button
+                type="button"
+                class="logo"
+                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                aria-label="페이지 맨 위로 이동"
+            >
+                CHOI<br>
+                SEOYOUNG
+            </button>
+
+            <div class="profile-img-frame">
+                <img
+                    src="profile.jpg"
+                    alt="최서영 프로필 사진"
+                >
+            </div>
+
+            <div class="info-section">
+                <h3>연락처</h3>
+
+                <ul class="info-list">
+                    <li>
+                        📞 +82 1080138939
+                    </li>
+
+                    <li>
+                        ✉️
+
+                        <button
+                            type="button"
+                            onclick="copyEmail(event)"
+                        >
+                            seoyoung8939@gmail.com
+                        </button>
+                    </li>
+
+                    <li>
+                        📍 Seoul, South Korea
+                    </li>
+
+                    <li>
+                        🌐
+
+                        <a
+                            href="https://github.com/csy030922"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            github.com/csy030922
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3>언어</h3>
+
+                <ul class="info-list">
+                    <li>🇰🇷 한국어</li>
+                    <li>🇺🇸 영어</li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3>학력</h3>
+
+                <ul class="info-list">
+                    <li>🏫 영훈국제중학교</li>
+                    <li>🏫 대진여자고등학교</li>
+                    <li>🏢 광운대학교</li>
+
+                    <li>
+                        🎓 정보융합학부
+                        데이터사이언스 전공
+                    </li>
+
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =================================================
+         FLOATING NAVIGATION
+    ================================================== -->
+
+    <div
+        class="floating-nav"
+        aria-label="페이지 메뉴"
+    >
+        <a href="#completed" class="nav-item">Projects</a>
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#awards" class="nav-item">Awards</a>
+        <a href="#certifications" class="nav-item">Certificates</a>
+        <a href="#contact" class="nav-item">Contact</a>
+    </div>
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <div class="main-wrapper">
+
+        <div class="hero">
+            <h1>
+                사람을 위한 기술,<br>
+
+                <span class="hero-second-line">
+                    <span class="gradient-text">
+                        더 나은 경험
+                    </span>을 설계합니다.
+                </span>
+            </h1>
+
+            <p>
+                AI와 데이터를 실제 사용자 경험으로 연결하는 개발자입니다. 
+            </p>
+
+            <div class="hero-fields">
+                <span>Data Science</span>
+                <span>Human–AI Interaction</span>
+                <span>AI Engineering</span>
+                <span>Frontend Development</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             PROJECTS
+        ============================================== -->
+
+        <section
+            id="completed"
+            class="page-section"
+        >
+            <h2 class="section-title">
+                Completed Works
+
+                <span class="badge-count">
+                    6
+                </span>
+            </h2>
+
+            <div class="project-grid">
+
+                <!-- 발표의 숲 -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p5')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div
+                        class="img-box"
+                        style="--thumb-image: url('src/feedbackpage.jpg');"
+                    >
+                        <img
+                            src="src/feedbackpage.jpg"
+                            alt="발표의 숲"
+                        >
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            발표의 숲:
+                            AI 실시간 면접 훈련 플랫폼
+                        </h3>
+
+                        <p>
+                            시선, 표정, 음성 데이터를 실시간
+                            분석하여 즉각적인 피드백을 제공하는
+                            플랫폼입니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- 할루시네이션 -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p3')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div
+                        class="img-box"
+                        style="--thumb-image: url('figure2.jpg');"
+                    >
+                        <img
+                            src="figure2.jpg"
+                            alt="대화형 AI 할루시네이션 선제 예측 연구 아키텍처"
+                        >
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            대화형 AI 할루시네이션
+                            선제 예측 연구
+                        </h3>
+
+                        <p>
+                            다이얼로그 히스토리 토큰을 분석해
+                            다음 턴의 할루시네이션 위험을
+                            조기 경보하는 예측 논문입니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- ArriView -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p4')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div
+                        class="img-box"
+                        style="--thumb-image: url('arriview.jpg');"
+                    >
+                        <img
+                            src="arriview.jpg"
+                            alt="ArriView 서비스 대시보드"
+                        >
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            ArriView:
+                            실시간 대안 경로 추천 엔진
+                        </h3>
+
+                        <p>
+                            다중 스케일 시공간 그래프 신경망
+                            기술로 이동 효율 및 도심 인파 혼잡
+                            대안 공간을 정밀 추천합니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Simvex -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p2')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div
+                        class="img-box"
+                        style="--thumb-image: url('src2/landingpage.jpg');"
+                    >
+                        <img
+                            src="src2/landingpage.jpg"
+                            alt="Simvex"
+                        >
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            Simvex:
+                            Web-based 3D 시각화 플랫폼
+                        </h3>
+
+                        <p>
+                            웹 기반 3D 시뮬레이션 플랫폼을 통해
+                            복잡한 시공간 데이터를 구현했습니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- 관공이 -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p6')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div class="project-data-cover">
+                        <span class="project-data-type">
+                            NLP · RAG
+                        </span>
+
+                        <strong class="project-data-title">
+                            PUBLIC SERVICE<br>
+                            RETRIEVAL
+                        </strong>
+
+                        <div>
+                            <div class="project-data-flow">
+                                <span>QUERY</span>
+                                <b>→</b>
+                                <span>FAISS</span>
+                                <b>→</b>
+                                <span>GPT</span>
+                            </div>
+
+                            <div class="project-data-metrics">
+                                <div>
+                                    <strong>6,022</strong>
+                                    <span>민원 문서</span>
+                                </div>
+
+                                <div>
+                                    <strong>0.9288</strong>
+                                    <span>Top 3 Accuracy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            관공이:
+                            파인튜닝 임베딩·RAG 기반 민원 챗봇
+                        </h3>
+
+                        <p>
+                            자연어 질문과 관련된 민원 Top 3를 검색하고
+                            담당 기관·부서·연락처를 안내합니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- 긴장성 기흉 -->
+                <article
+                    class="project-card"
+                    onclick="showDetail('p7')"
+                >
+                    <div class="status-tag">
+                        Completed
+                    </div>
+
+                    <div class="arrow-icon">
+                        ↗
+                    </div>
+
+                    <div class="project-data-cover">
+                        <span class="project-data-type">
+                            HEALTHCARE · ML
+                        </span>
+
+                        <strong class="project-data-title">
+                            EARLY WARNING<br>
+                            MODEL
+                        </strong>
+
+                        <div>
+                            <div class="project-data-flow">
+                                <span>VITAL</span>
+                                <b>+</b>
+                                <span>ABG</span>
+                                <b>→</b>
+                                <span>XGB</span>
+                            </div>
+
+                            <div class="project-data-metrics">
+                                <div>
+                                    <strong>0.7457</strong>
+                                    <span>AUROC</span>
+                                </div>
+
+                                <div>
+                                    <strong>0.7276</strong>
+                                    <span>Recall</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-overlay">
+                        <h3>
+                            MIMIC-IV 기반
+                            긴장성 기흉 조기 예측 모델
+                        </h3>
+
+                        <p>
+                            중환자실 생체신호와 ABG 데이터로
+                            긴장성 기흉 위험 징후를 조기에 탐지합니다.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =============================================
+             EXPERIENCE
+        ============================================== -->
+
+        <section
+            id="experience"
+            class="page-section"
+        >
+            <h2 class="section-title">
+                Work Experience
+
+                <span class="badge-count">
+                    4
+                </span>
+            </h2>
+
+            <div class="timeline-container">
+
+                <!-- AWS -->
+                <article class="timeline-item">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-title">
+                                ☁️ AWS Student Builder Group
+                                in KWU 4th
+                            </h3>
+
+                            <span class="timeline-period">
+                                2026.03 - 2026.07
+                            </span>
+                        </div>
+
+                        <div class="experience-detail-grid">
+                            <div class="experience-copy">
+                                <div class="timeline-institution-line">
+                                    <div class="info-item">
+                                        <span class="badge">
+                                            기관명
+                                        </span>
+
+                                        <span class="content">
+                                            AWS Korea / 교내
+                                        </span>
+                                    </div>
+
+                                    <div class="info-item">
+                                        <span class="badge">
+                                            담당 활동
+                                        </span>
+
+                                        <span class="content">
+                                            클라우드 및 AI 기반 프로젝트
+                                            및 스터디 활동
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p class="timeline-desc">
+                                    AWS 기반 클라우드 아키텍처와
+                                    생성형 AI 기술을 학습하며 팀
+                                    프로젝트와 스터디 활동을
+                                    진행했습니다. 특히 Amazon
+                                    Bedrock을 활용한 생성형 AI
+                                    프로젝트를 수행하며 RAG,
+                                    서버 구조 설계, 서비스 아키텍처
+                                    구성 등 실제 서비스 환경을
+                                    고려한 기술을 경험했습니다.
+                                    또한 ACC 자격증 소모임에
+                                    참여하여 AWS 핵심 서비스와
+                                    클라우드 기초 지식을 꾸준히
+                                    학습하며 클라우드 활용 역량을
+                                    키워나갑니다.
+                                </p>
+                            </div>
+
+                            <figure
+                                class="proof-card landscape"
+                                style="--proof-image: url('ASBG_KW_Certification_Seoyoung_Choi.jpg');"
+                            >
+                                <div class="proof-card-top">
+                                    <span>Certificate</span>
+                                    <span>AWS · 2026</span>
+                                </div>
+
+                                <div class="proof-preview">
+                                    <img
+                                        src="ASBG_KW_Certification_Seoyoung_Choi.jpg"
+                                        alt="최서영 AWS Student Builder Group 수료증"
+                                    >
+                                </div>
+
+                                <figcaption class="proof-caption">
+                                    <div>
+                                        <strong>수료증</strong>
+
+                                        <span>
+                                            AWS Student Builder Group
+                                            at Kwangwoon University
+                                        </span>
+                                    </div>
+
+                                    <span class="proof-index">
+                                        01
+                                    </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SAMSUNG -->
+                <article class="timeline-item">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-title">
+                                📱 삼성 Gen Z Lab.
+                                Campus Connect
+                            </h3>
+
+                            <span class="timeline-period">
+                                2025.07
+                            </span>
+                        </div>
+
+                        <div class="experience-detail-grid">
+                            <div class="experience-copy">
+                                <div class="timeline-institution-line">
+                                    <div class="info-item">
+                                        <span class="badge">
+                                            기관명
+                                        </span>
+
+                                        <span class="content">
+                                            삼성전자
+                                        </span>
+                                    </div>
+
+                                    <div class="info-item">
+                                        <span class="badge">
+                                            담당 활동
+                                        </span>
+
+                                        <span class="content">
+                                            사용자 온보딩 UX 개선
+                                            프로젝트 수행
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p class="timeline-desc">
+                                    사용자 온보딩 과정에서 발생할 수
+                                    있는 불편 요소를 분석하고,
+                                    사용자 경험(UX) 관점에서 진입
+                                    장벽을 낮추기 위한 개선 아이디어를
+                                    도출했습니다. 삼성전자 본사에
+                                    방문하여 온보딩 UX 개선 방향에
+                                    대해 발표했으며, 이후 MX 사업부
+                                    현업 멘토링을 통해 기술적 구현
+                                    가능성, 서비스 기획 과정,
+                                    실제 업무 환경에 대한 궁금증을
+                                    해소할 수 있었습니다. 이를 통해
+                                    사용자 경험과 기술적 현실성을
+                                    함께 고려하는 문제 해결 관점을
+                                    학습했습니다.
+                                </p>
+                            </div>
+
+                            <figure
+                                class="proof-card portrait"
+                                style="--proof-image: url('Samsung_GenZ_Lab_Certification_Seoyoung_Choi.jpg');"
+                            >
+                                <div class="proof-card-top">
+                                    <span>Certificate</span>
+                                    <span>Samsung · 2025</span>
+                                </div>
+
+                                <div class="proof-preview">
+                                    <img
+                                        src="Samsung_GenZ_Lab_Certification_Seoyoung_Choi.jpg"
+                                        alt="최서영 삼성 Gen Z Lab Campus Connect 수료증"
+                                    >
+                                </div>
+
+                                <figcaption class="proof-caption">
+                                    <div>
+                                        <strong>수료증</strong>
+
+                                        <span>
+                                            삼성 Gen Z Lab.
+                                            Campus Connect
+                                        </span>
+                                    </div>
+
+                                    <span class="proof-index">
+                                        02
+                                    </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CHIC -->
+                <article class="timeline-item">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-title">
+                                📕 인간컴퓨터상호작용
+                                전공학술모임 (CHIC)
+                            </h3>
+
+                            <span class="timeline-period">
+                                2025.03 - 현재
+                            </span>
+                        </div>
+
+                        <div class="timeline-institution-line">
+                            <div class="info-item">
+                                <span class="badge">
+                                    기관명
+                                </span>
+
+                                <span class="content">
+                                    CHIC
+                                </span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="badge">
+                                    담당 활동
+                                </span>
+
+                                <span class="content">
+                                    딥러닝 스터디 운영 및
+                                    HCI 연구 프로젝트 참여
+                                </span>
+                            </div>
+                        </div>
+
+                        <p class="timeline-desc">
+                            전공학술모임 CHIC에서 딥러닝 스터디
+                            조장을 맡아 모델의 학습 메커니즘,
+                            신경망 구조, 주요 알고리즘에 대해
+                            함께 학습하고 실습하는 활동을
+                            운영했습니다. 또한 코딩 테스트
+                            스터디 조장으로서 문제 풀이와 학습
+                            일정을 관리하며 알고리즘 기초 역량을
+                            강화했습니다. 이와 함께 HCI 관련
+                            프로젝트에 참여하여 사용자 경험을
+                            고려한 서비스 아이디어를 구체화하고,
+                            포스터 추천 시스템 등 실제 데이터
+                            기반 서비스를 설계하며 기술적
+                            실행력과 사용자 중심 설계 역량을
+                            함께 키웠습니다.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- LIKELION -->
+                <article class="timeline-item">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-title">
+                                🦁 멋쟁이사자처럼 11th
+                            </h3>
+
+                            <span class="timeline-period">
+                                2023.01 - 2023.12
+                            </span>
+                        </div>
+
+                        <div class="timeline-institution-line">
+                            <div class="info-item">
+                                <span class="badge">
+                                    기관명
+                                </span>
+
+                                <span class="content">
+                                    교내 멋쟁이 사자처럼
+                                </span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="badge">
+                                    담당 활동
+                                </span>
+
+                                <span class="content">
+                                    백엔드 개발 및 프로젝트 기획
+                                </span>
+                            </div>
+                        </div>
+
+                        <p class="timeline-desc">
+                            교내 멋쟁이사자처럼 11기로 활동하며
+                            웹 서비스의 기획, 개발, 배포까지
+                            이어지는 전반적인 개발 프로세스를
+                            경험했습니다. 백엔드 개발 역할을 맡아
+                            서비스에 필요한 데이터 구조와 기능
+                            흐름을 설계하고, 팀원들과 협업하며
+                            실제 사용자를 고려한 기능 구현 과정을
+                            학습했습니다. 또한 통합 할인 혜택
+                            조회 서비스 등 다양한 서비스
+                            아이디어를 제안하며 프로젝트의
+                            방향성을 구체화하는 데 기여했습니다.
+                            이를 통해 단순 구현을 넘어 문제 정의,
+                            서비스 기획, 협업 기반 개발 역량을
+                            함께 키울 수 있었습니다.
+                        </p>
+
+                        <div
+                            class="proof-gallery"
+                            aria-label="멋쟁이사자처럼 활동 자료"
+                        >
+                            <figure
+                                class="proof-card photo"
+                                style="--proof-image: url('likelion_photo_seoyoung_choi.jpeg');"
+                            >
+                                <div class="proof-card-top">
+                                    <span>Activity</span>
+                                    <span>Growl to Growth</span>
+                                </div>
+
+                                <div class="proof-preview">
+                                    <img
+                                        src="likelion_photo_seoyoung_choi.jpeg"
+                                        alt="멋쟁이사자처럼 11기 단체 활동 사진"
+                                    >
+                                </div>
+
+                                <figcaption class="proof-caption">
+                                    <div>
+                                        <strong>활동 사진</strong>
+
+                                        <span>
+                                            멋쟁이사자처럼 대학 11기
+                                        </span>
+                                    </div>
+
+                                    <span class="proof-index">
+                                        03
+                                    </span>
+                                </figcaption>
+                            </figure>
+
+                            <figure
+                                class="proof-card certificate"
+                                style="--proof-image: url('likelion_certification_seoyoung_choi.jpeg');"
+                            >
+                                <div class="proof-card-top">
+                                    <span>Certificate</span>
+                                    <span>2023</span>
+                                </div>
+
+                                <div class="proof-preview">
+                                    <img
+                                        src="likelion_certification_seoyoung_choi.jpeg"
+                                        alt="최서영 멋쟁이사자처럼 대학 11기 수료증"
+                                    >
+                                </div>
+
+                                <figcaption class="proof-caption">
+                                    <div>
+                                        <strong>수료증</strong>
+
+                                        <span>
+                                            멋쟁이사자처럼 대학 11기
+                                        </span>
+                                    </div>
+
+                                    <span class="proof-index">
+                                        04
+                                    </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =============================================
+             AWARDS
+        ============================================== -->
+
+        <section
+            id="awards"
+            class="page-section"
+        >
+            <h2 class="section-title">
+                Honors & Awards
+
+                <span class="badge-count">
+                    2
+                </span>
+            </h2>
+
+            <div class="honors-stack">
+
+                <article class="honor-card">
+                    <div class="honor-copy">
+                        <span class="honor-kicker">
+                            AWARD 01 · 2025.05
+                        </span>
+
+                        <div class="honor-heading">
+                            <h3>
+                                The 'Pay언'한<br>
+                                핀테크 서비스 해커톤
+                            </h3>
+
+                            <strong class="honor-result">
+                                우수상
+                            </strong>
+                        </div>
+
+                        <p class="honor-description">
+                            시니어 세대의 디지털 금융 소외 해소를 위한
+                            아날로그 필기 전표 기반의 노인 맞춤형 이체
+                            서비스 ‘종이통장’을 설계했습니다.
+                        </p>
+
+                        <div class="honor-info">
+                            <div>
+                                <span>Project</span>
+
+                                <strong>
+                                    종이통장
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Role</span>
+
+                                <strong>
+                                    Backend Development ·
+                                    Service Planning
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <figure
+                        class="honor-proof"
+                        style="--proof-bg: url('Pintec_prize.jpeg');"
+                    >
+                        <div class="honor-proof-media">
+                            <img
+                                src="Pintec_prize.jpeg"
+                                alt="광운 핀테크 해커톤 우수상 상장"
+                            >
+                        </div>
+
+                        <figcaption>
+                            광운 핀테크 해커톤 우수상
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <article class="honor-card">
+                    <div class="honor-copy">
+                        <span class="honor-kicker">
+                            AWARD 02 · 2025.09
+                        </span>
+
+                        <div class="honor-heading">
+                            <h3>
+                                H.O.P.E 창의보조공학<br>
+                                경진대회
+                            </h3>
+
+                            <strong class="honor-result">
+                                우수상
+                            </strong>
+                        </div>
+
+                        <p class="honor-description">
+                            얼굴 마비 환자의 자가 재활을 돕는
+                            Google ML Kit 및 칼만 필터 신호 안정화 기반
+                            보조공학적 AR 피드백 시스템을 개발했습니다.
+                        </p>
+
+                        <div class="honor-info">
+                            <div>
+                                <span>Project</span>
+
+                                <strong>
+                                    안면 마비 환자 자가 재활 시스템
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Role</span>
+
+                                <strong>
+                                    Frontend Development ·
+                                    Interaction Design
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <figure
+                        class="honor-proof"
+                        style="--proof-bg: url('HOPE_prize.jpeg');"
+                    >
+                        <div class="honor-proof-media">
+                            <img
+                                src="HOPE_prize.jpeg"
+                                alt="H.O.P.E 창의보조공학 경진대회 우수상 상장"
+                            >
+                        </div>
+
+                        <figcaption>
+                            H.O.P.E 창의보조공학 경진대회 우수상
+                        </figcaption>
+                    </figure>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =============================================
+             CERTIFICATES
+        ============================================== -->
+
+        <section
+            id="certifications"
+            class="page-section"
+        >
+            <h2 class="section-title">
+                Certificates
+
+                <span class="badge-count">
+                    2
+                </span>
+            </h2>
+
+            <article class="credential-card">
+                <div class="credential-copy">
+                    <span class="credential-kicker">
+                        DATABASE CERTIFICATION
+                    </span>
+
+                    <h3>
+                        SQLD
+                    </h3>
+
+                    <p class="credential-name">
+                        SQL 개발자
+                    </p>
+
+                    <p class="credential-description">
+                        데이터 모델링과 SQL 활용 역량을 검증하는
+                        국가공인 SQL 개발자 자격입니다.
+                    </p>
+
+                    <div class="credential-info">
+                        <div>
+                            <span>발급 기관</span>
+
+                            <strong>
+                                한국데이터산업진흥원
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>취득일</span>
+
+                            <strong>
+                                2025.04.04
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>유효기간</span>
+
+                            <strong>
+                                2025.04.04 – 2027.04.04
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <figure
+                    class="credential-proof"
+                    style="--proof-bg: url('sqld_certificate_preview.jpg');"
+                >
+                    <div class="credential-proof-media">
+                        <img
+                            src="sqld_certificate_preview.jpg"
+                            alt="최서영 SQLD 국가공인 자격증"
+                        >
+                    </div>
+
+                    <figcaption>
+                        SQL Developer · KDATA
+                    </figcaption>
+                </figure>
+            </article>
+
+                        <!-- OPIc -->
+            <article class="credential-card">
+                <div class="credential-copy">
+                    <span class="credential-kicker">
+                        ENGLISH PROFICIENCY
+                    </span>
+
+                    <h3>
+                        OPIc
+                    </h3>
+
+                    <p class="credential-name">
+                        IH · Intermediate High
+                    </p>
+
+                    <p class="credential-description">
+                        ACTFL OPIc 영어 말하기 평가에서
+                        Intermediate High 등급을 취득했습니다.
+                        일상 및 사회적 상황에서 영어로 정보를
+                        전달하고 대화를 이어가는 의사소통 역량을
+                        검증받았습니다.
+                    </p>
+
+                    <div class="credential-info">
+                        <div>
+                            <span>평가 기관</span>
+
+                            <strong>
+                                ACTFL
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>등급</span>
+
+                            <strong>
+                                IH · Intermediate High
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>시험일</span>
+
+                            <strong>
+                                2026.09.05
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>유효기간</span>
+
+                            <strong>
+                                2026.09.05 – 2028.09.04
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <figure class="credential-proof opic-proof">
+
+                    <button
+                        type="button"
+                        class="opic-flip-card"
+                        onclick="flipOpicCard(this)"
+                        aria-label="OPIc 인증서와 Score Report 전환"
+                        aria-pressed="false"
+                    >
+                        <div class="opic-flip-inner">
+
+                            <!-- 앞면: OPIc 인증서 -->
+                            <div class="opic-flip-face opic-flip-front">
+                                <img
+                                    src="opic.JPG"
+                                    alt="최서영 OPIc IH 인증서"
+                                >
+
+                                <span class="opic-flip-hint">
+                                    <span class="flip-icon">↻</span>
+                                    <span class="flip-text">Click to flip</span>
+                                </span>
+                            </div>
+
+                            <!-- 뒷면: Score Report -->
+                            <div class="opic-flip-face opic-flip-back">
+                                <img
+                                    src="opic2.JPG"
+                                    alt="최서영 OPIc IH Score Report"
+                                >
+
+                                <span class="opic-flip-hint">
+                                    <span class="flip-icon">↻</span>
+                                    <span class="flip-text">Click to return</span>
+                                </span>
+                            </div>
+
+                        </div>
+                    </button>
+
+                    <figcaption>
+                        OPIc IH · ACTFL · 2026
+                    </figcaption>
+
+                </figure>
+            </article>
+        </section>
+
+        <!-- =============================================
+             CONTACT
+        ============================================== -->
+
+        <section
+            id="contact"
+            class="page-section"
+        >
+            <h2
+                class="section-title"
+                style="display: inline-flex;"
+            >
+                Contact
+            </h2>
+
+            <div class="contact-grid">
+                <button
+                    type="button"
+                    class="contact-card-btn"
+                    onclick="copyEmail(event)"
+                >
+                    <div class="icon-wrapper">
+                        <!-- Mail Icon -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <rect
+                                x="2"
+                                y="4"
+                                width="20"
+                                height="16"
+                                rx="2"
+                            />
+                            <path d="m22 7-10 5L2 7" />
+                        </svg>
+                    </div>
+
+                    <span class="label">
+                        Email
+                    </span>
+
+                    <span class="value">
+                        seoyoung8939@gmail.com
+                    </span>
+                </button>
+
+                <a
+                    href="https://github.com/csy030922"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-card-btn"
+                >
+                    <div class="icon-wrapper">
+                        <!-- GitHub Icon -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M12 .7C5.7.7.6 5.8.6 12.1c0 5 3.3 9.3 7.8 10.8.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.1 1.2A10.7 10.7 0 0 1 12 5.8c1 0 1.9.1 2.8.4 2.2-1.5 3.1-1.2 3.1-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.1v3.2c0 .3.2.7.8.6a11.5 11.5 0 0 0 7.8-10.8C23.4 5.8 18.3.7 12 .7z"
+                            />
+                        </svg>
+                    </div>
+
+                    <span class="label">
+                        GitHub
+                    </span>
+
+                    <span class="value">
+                        csy030922
+                    </span>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- =================================================
+         DETAIL MODAL
+    ================================================== -->
+
+    <div
+        id="detailViewer"
+        onclick="closeModalOutside(event)"
+    >
+        <div class="modal-window">
+            <div class="modal-header-sticky">
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeDetail()"
+                    aria-label="상세 창 닫기"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <div
+                id="detailContent"
+                class="detail-content"
+            ></div>
+        </div>
+    </div>
+
+    <output
+        id="copyToast"
+        class="copy-toast"
+        aria-live="polite"
+    >
+        이메일이 복사됐어요
+    </output>
+
+    <!-- 우측 하단 플로팅 테마 스위처 -->
+    <div class="floating-theme-switcher" aria-label="화면 모드 변경">
+        <button
+            type="button"
+            class="theme-btn active"
+            data-theme="light"
+            title="Light Mode"
+        >
+            ☀
+        </button>
+        <button
+            type="button"
+            class="theme-btn"
+            data-theme="dark"
+            title="Dark Mode"
+        >
+            ☾
+        </button>
+    </div>
+
+    <script>
+        /* =================================================
+           현재 섹션에 맞춰 왼쪽 메뉴 변경
+        ================================================= */
+
+        const sections = [
+            ...document.querySelectorAll(".page-section")
+        ];
+
+        const navItems = [
+            ...document.querySelectorAll(".nav-item")
+        ];
+
+        function setActiveMenu(sectionId) {
+            navItems.forEach((item) => {
+                const isActive =
+                    item.getAttribute("href") ===
+                    `#${sectionId}`;
+
+                item.classList.toggle(
+                    "active",
+                    isActive
+                );
+            });
+        }
+        
+        function flipOpicCard(card) {
+            const isFlipped =
+                card.classList.toggle("is-flipped");
+
+            card.setAttribute(
+                "aria-pressed",
+                String(isFlipped)
+            );
+        }
+
+        function updateActiveMenu() {
+            const checkPoint =
+                window.innerHeight * 0.35;
+
+            let currentSection = null;
+
+            sections.forEach((section) => {
+                const rect =
+                    section.getBoundingClientRect();
+
+                if (
+                    rect.top <= checkPoint &&
+                    rect.bottom > checkPoint
+                ) {
+                    currentSection = section;
+                }
+            });
+
+            const isPageBottom =
+                window.innerHeight +
+                window.scrollY >=
+                document.documentElement.scrollHeight - 10;
+
+            if (
+                isPageBottom &&
+                sections.length > 0
+            ) {
+                currentSection =
+                    sections[sections.length - 1];
+            }
+
+            if (!currentSection) {
+                const closestSections =
+                    sections
+                        .map((section) => {
+                            const rect =
+                                section.getBoundingClientRect();
+
+                            return {
+                                section,
+                                distance:
+                                    Math.abs(
+                                        rect.top -
+                                        checkPoint
+                                    )
+                            };
+                        })
+                        .sort(
+                            (a, b) =>
+                                a.distance -
+                                b.distance
+                        );
+
+                currentSection =
+                    closestSections[0]?.section;
+            }
+
+            if (currentSection) {
+                setActiveMenu(
+                    currentSection.id
+                );
+            }
+        }
+
+        let scrollTicking = false;
+
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (scrollTicking) {
+                    return;
+                }
+
+                scrollTicking = true;
+
+                window.requestAnimationFrame(
+                    () => {
+                        updateActiveMenu();
+                        scrollTicking = false;
+                    }
+                );
+            },
+            {
+                passive: true
+            }
+        );
+
+        window.addEventListener(
+            "resize",
+            updateActiveMenu
+        );
+
+        window.addEventListener(
+            "load",
+            updateActiveMenu
+        );
+
+        navItems.forEach((link) => {
+            link.addEventListener(
+                "click",
+                (event) => {
+                    const targetId =
+                        link.getAttribute("href");
+
+                    if (
+                        !targetId ||
+                        !targetId.startsWith("#")
+                    ) {
+                        return;
+                    }
+
+                    const targetSection =
+                        document.querySelector(
+                            targetId
+                        );
+
+                    if (!targetSection) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    setActiveMenu(
+                        targetSection.id
+                    );
+
+                    targetSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            );
+        });
+
+        updateActiveMenu();
+
+        /* =========================================================
+        LIGHT / DARK MODE (버튼 클릭 및 초기화 연동)
+        ========================================================= */
+
+        function applyTheme(theme) {
+            const isDark = theme === "dark";
+
+            document.body.classList.toggle("dark-mode", isDark);
+
+            // 화면상 테마 버튼들의 active 클래스 갱신
+            const themeButtons = document.querySelectorAll(".theme-btn");
+            themeButtons.forEach((button) => {
+                button.classList.toggle(
+                    "active",
+                    button.dataset.theme === theme
+                );
+            });
+
+            localStorage.setItem("portfolio-theme", theme);
+        }
+
+        // 버튼 클릭 이벤트 바인딩
+        const themeButtons = document.querySelectorAll(".theme-btn");
+        themeButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                applyTheme(button.dataset.theme);
+            });
+        });
+
+        // 페이지 로드 시 저장된 테마 불러오기
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme === "dark") {
+            applyTheme("dark");
+        } else {
+            applyTheme("light");
+        }
+
+        /* =================================================
+           PROJECT DETAIL DATA
+        ================================================= */
+
+        const projectDetails = {
+            p3: {
+                title:
+                    "대화형 AI 할루시네이션 선제 예측 연구 (Hallucination Forecasting in Multi-turn Conversation)",
+
+                tags:
+                    "#LLM #Hallucination_Forecasting #Multi-turn_Dialogue #IEEE_ACCESS",
+
+                content: `
+                    <h4>1. 연구 배경 및 목적</h4>
+
+                    <p>
+                        대화가 길어질수록 컨텍스트 유지의
+                        한계로 인해 발생하는 LLM의
+                        할루시네이션 현상을 사후적인
+                        탐지가 아닌, 선제적인 예측의
+                        관점으로 재정의한 연구입니다.
+                        사용자가 잘못된 답변에 노출되기 전에
+                        다이얼로그 히스토리 기반의 리스크
+                        조기 경보 시스템 모델링을 추구합니다.
+                    </p>
+
+                    <h4>
+                        2. 주요 발견
+                        (Overconfident State Pattern)
+                    </h4>
+
+                    <p>
+                        DiaHalu 데이터셋을 기반으로 토큰
+                        단위 불확실성(Entropy)과 로그
+                        확률(Log-probability) 신호의
+                        시계열 변화를 분석했습니다.
+                        실험 결과, 통념과 달리 모델의 내부
+                        불확실성이 높을 때보다 오히려
+                        낮은 엔트로피와 매우 높은 확신도
+                        상태일 때 다음 턴의 할루시네이션
+                        리스크가 증가하는 과확신 상태
+                        메커니즘을 분석했습니다.
+                    </p>
+
+                    <img
+                        src="figure2.jpg"
+                        alt="연구 아키텍처 상세 구조"
+                    >
+
+                    <h4>3. 연구 성과 및 의의</h4>
+
+                    <p>
+                        GPT-4o, GPT-4o-mini, GPT-5.4 등
+                        다양한 모델 스케일에서 과확신 패턴을
+                        분석했으며, 사후 처리에 국한되었던
+                        실시간 대화 에이전트 시스템에
+                        선제적인 위험 예측 기능을 도입할 수
+                        있는 연구 방향을 제시했습니다.
+                    </p>
+
+                    <div class="btn-container">
+                        <a
+                            href="./Hallucination_Forecasting_in_Multi_turn_Conversation.pdf"
+                            download
+                            class="action-link-btn"
+                        >
+                            연구 논문(PDF) 다운로드
+                        </a>
+                    </div>
+                `
+            },
+
+            p4: {
+                title:
+                    "ArriView: 다중 스케일 시공간 그래프 신경망 기반 실시간 대안 추천 엔지니어링",
+
+                tags:
+                    "#ST-GCN #GAT #GRU #Probability_Synthesis #Cold_Start #Decision_Support",
+
+                content: `
+                    <div class="arriview-intro">
+                        <span class="arriview-index">
+                            PROJECT OVERVIEW
+                        </span>
+
+                        <p class="arriview-lead">
+                            ArriView는 사용자가 목적지에 도착하는 시점의
+                            혼잡도와 장소 이용 가능성을 예측하고,
+                            기존 계획의 성공 가능성이 낮을 경우
+                            주변 대안 장소와 이동 경로를 함께 제안하는
+                            실시간 의사결정 지원 서비스입니다.
+                        </p>
+                    </div>
+
+                    <figure class="arriview-media">
+                        <div class="arriview-image-frame">
+                            <img
+                                src="mainpage.jpg"
+                                alt="ArriView 이동 조건 설정 및 지도 기반 메인 화면"
+                            >
+                        </div>
+
+                        <figcaption>
+                            <strong>
+                                01 · ROUTE CONFIGURATION
+                            </strong>
+
+                            <span>
+                                이동 수단, 출발 시각, 출발지,
+                                목적지와 체류 시간을 설정하는 메인 화면
+                            </span>
+                        </figcaption>
+                    </figure>
+
+                    <h4>
+                        1. 사용자 이동 조건을 반영한 서비스 설계
+                    </h4>
+
+                    <p>
+                        사용자는 도보, 차량, 대중교통 중 이동 수단을
+                        선택하고, 기준 요일과 출발 시각, 출발지,
+                        목적지, 예상 체류 시간을 직접 설정할 수 있습니다.
+                        단순히 현재 위치의 혼잡도를 안내하는 것이 아니라
+                        사용자의 이동시간을 계산하여 실제 목적지 도착
+                        시점의 상황을 예측하도록 설계했습니다.
+                    </p>
+
+                    <div class="arriview-feature-grid">
+                        <article class="arriview-feature-card">
+                            <span>INPUT 01</span>
+
+                            <strong>
+                                이동 조건 설정
+                            </strong>
+
+                            <p>
+                                이동 수단과 출발 시간,
+                                출발지·목적지 및 체류시간을 설정합니다.
+                            </p>
+                        </article>
+
+                        <article class="arriview-feature-card">
+                            <span>INPUT 02</span>
+
+                            <strong>
+                                실시간 환경 정보
+                            </strong>
+
+                            <p>
+                                지역별 혼잡도와 기온 정보를
+                                이동 계획에 함께 반영합니다.
+                            </p>
+                        </article>
+
+                        <article class="arriview-feature-card">
+                            <span>OUTPUT</span>
+
+                            <strong>
+                                도착 성공 가능성
+                            </strong>
+
+                            <p>
+                                장소 이용 가능성과 대안 장소
+                                추천 결과를 제공합니다.
+                            </p>
+                        </article>
+                    </div>
+
+                    <h4>
+                        2. 개인화 기록 관리 및 실시간 현황 탐색
+                    </h4>
+
+                    <p>
+                        마이페이지에서는 최근 검색 기록과 저장한 장소를
+                        확인하고, 테마와 화면 레이아웃을 개인 취향에
+                        맞게 조정할 수 있습니다. 실시간 현황 화면에서는
+                        서울 지역을 검색하여 각 구의 혼잡도와 기온을
+                        비교할 수 있도록 구성했습니다.
+                    </p>
+
+                    <div class="arriview-gallery">
+                        <figure class="arriview-media">
+                            <div class="arriview-image-frame">
+                                <img
+                                    src="mypage.jpg"
+                                    alt="ArriView 마이페이지"
+                                >
+                            </div>
+
+                            <figcaption>
+                                <strong>
+                                    02 · PERSONAL DASHBOARD
+                                </strong>
+
+                                <span>
+                                    최근 검색 기록, 저장 장소,
+                                    테마와 화면 레이아웃 관리
+                                </span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="arriview-media">
+                            <div class="arriview-image-frame">
+                                <img
+                                    src="mypage_2.jpg"
+                                    alt="서울 지역별 실시간 혼잡도 화면"
+                                >
+                            </div>
+
+                            <figcaption>
+                                <strong>
+                                    03 · LIVE STATUS
+                                </strong>
+
+                                <span>
+                                    서울 지역별 혼잡 상태와
+                                    실시간 기온 정보 비교
+                                </span>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>
+                        3. 다중 스케일 시공간 그래프 신경망 설계
+                    </h4>
+
+                    <p>
+                        광역 Zone GAT, 협역 Place GAT와
+                        GRU 기반 시간 통합 레이어를 결합하여
+                        지역과 개별 장소의 혼잡 변화를 함께
+                        예측했습니다. 광역 그래프에서는 물리적 거리,
+                        기능 동조, 교통 OD를 통해 구역 간 거시적
+                        인파 흐름을 학습하고, 협역 그래프에서는
+                        도보 파급과 동종 장소 간 대체 영향을
+                        모델링했습니다.
+                    </p>
+
+                    <p>
+                        또한 광역 실시간 상태를 FiLM Bridge를 통해
+                        협역 노드에 전달하고, GRU를 이용해 과거
+                        12시점의 공간 임베딩을 시계열로 통합했습니다.
+                    </p>
+
+                    <div class="arriview-process">
+                        <div class="arriview-process-item">
+                            <span>01</span>
+
+                            <div>
+                                <strong>Zone GAT</strong>
+
+                                <p>
+                                    거리, 기능 동조, 교통 OD를 이용해
+                                    구역 간 인파 흐름을 학습합니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="arriview-process-arrow">
+                            →
+                        </div>
+
+                        <div class="arriview-process-item">
+                            <span>02</span>
+
+                            <div>
+                                <strong>
+                                    Place GAT + FiLM
+                                </strong>
+
+                                <p>
+                                    장소 간 도보 파급과 대체 관계를
+                                    학습하고 광역 상태를 전달합니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="arriview-process-arrow">
+                            →
+                        </div>
+
+                        <div class="arriview-process-item">
+                            <span>03</span>
+
+                            <div>
+                                <strong>
+                                    Temporal GRU
+                                </strong>
+
+                                <p>
+                                    과거 공간 임베딩을 시계열로
+                                    통합하여 혼잡 변화를 예측합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>
+                        4. Cold-start 장소 대응
+                    </h4>
+
+                    <p>
+                        방문 이력이 부족한 신규 장소에서도 초기
+                        혼잡 패턴을 생성할 수 있도록 위치, 상권,
+                        시설 특성으로 구성된 29차원 장소 지문을
+                        구축했습니다. 가장 유사한 상위 10개 장소의
+                        패턴을 가중 평균하는 Weighted Analog
+                        Transfer 방식으로 프록시 베이스라인을
+                        생성했습니다.
+                    </p>
+
+                    <p>
+                        초기 생성 모델의 실제 패턴 상관계수는
+                        0.07이었지만 유사 장소 전이 방식 적용 후
+                        0.73을 달성했습니다. 이후 전체 모델에서는
+                        Cold-start 환경 기준 AUROC 0.863을
+                        기록했습니다.
+                    </p>
+
+                    <div class="arriview-metric-row">
+                        <div class="arriview-metric">
+                            <span>FINGERPRINT</span>
+
+                            <strong>29D</strong>
+
+                            <p>
+                                위치 · 상권 · 시설 특성
+                            </p>
+                        </div>
+
+                        <div class="arriview-metric">
+                            <span>ANALOG TRANSFER</span>
+
+                            <strong>0.73</strong>
+
+                            <p>
+                                유사 장소 패턴 상관계수
+                            </p>
+                        </div>
+
+                        <div class="arriview-metric">
+                            <span>MODEL PERFORMANCE</span>
+
+                            <strong>0.863</strong>
+
+                            <p>
+                                Cold-start AUROC
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        5. 성공 확률 합성과 실시간 대안 추천
+                    </h4>
+
+                    <p>
+                        이동시간 변동성을 반영하는 Lognormal 분포,
+                        모델 예측 오차와 M/M/c 큐잉 이론 기반
+                        대기시간을 Sobol QMC 방식으로 결합하여
+                        최종 성공 확률을 계산합니다.
+                    </p>
+
+                    <p>
+                        기존 계획의 성공 확률이 낮으면 목적지 주변의
+                        후보 장소를 이동시간, 혼잡도 개선 정도,
+                        장소 유형과 접근성을 기준으로 점수화하여
+                        최적의 대안을 제안합니다.
+                    </p>
+
+                    <figure class="arriview-media arriview-result-media">
+                        <div class="arriview-image-frame">
+                            <img
+                                src="result.png"
+                                alt="ArriView 대안 장소 추천 결과 화면"
+                            >
+                        </div>
+
+                        <figcaption>
+                            <strong>
+                                04 · ALTERNATIVE RECOMMENDATION
+                            </strong>
+
+                            <span>
+                                혼잡 위험을 분석하고 이동시간과
+                                완주율을 고려한 대안 장소를 제시
+                            </span>
+                        </figcaption>
+                    </figure>
+
+                    <div class="arriview-result-summary">
+                        <div>
+                            <span>01</span>
+
+                            <strong>
+                                계획 위험 감지
+                            </strong>
+
+                            <p>
+                                혼잡도와 이동 조건으로
+                                계획 실패 가능성을 판단합니다.
+                            </p>
+                        </div>
+
+                        <div>
+                            <span>02</span>
+
+                            <strong>
+                                후보 장소 검색
+                            </strong>
+
+                            <p>
+                                주변에서 동일하거나 유사한 목적의
+                                대체 장소를 탐색합니다.
+                            </p>
+                        </div>
+
+                        <div>
+                            <span>03</span>
+
+                            <strong>
+                                Top-k 대안 제안
+                            </strong>
+
+                            <p>
+                                이동시간, 혼잡 개선도와 성공 확률을
+                                기준으로 후보를 정렬합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        6. 프로젝트 성과 및 의의
+                    </h4>
+
+                    <p>
+                        ArriView는 실시간 혼잡 수치를 보여주는 것을
+                        넘어 사용자가 실제 목적지에 도착하는 시점의
+                        상황을 예측하고, 계획 실패 가능성에 대응할
+                        대안까지 제시합니다.
+                    </p>
+
+                    <div class="btn-container">
+                        <a
+                            href="https://arri-view.vercel.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="action-link-btn"
+                        >
+                            ArriView 웹 데모 보러가기
+                        </a>
+                    </div>
+                `
+            },
+
+            p5: {
+                title:
+                    "발표의 숲: AI 실시간 면접 훈련 플랫폼",
+
+                tags:
+                    "#Web_App #HCI #AI_Coach #Real-time_Analysis",
+
+                content: `
+                    <h4>1. 프로젝트 개요</h4>
+
+                    <p>
+                        사용자의 다중 모달 시선, 표정, 음성
+                        데이터를 실시간으로 분석하여 객관적인
+                        지표를 제공하는 AI 프레젠테이션 코칭
+                        서비스입니다.
+                    </p>
+
+                    <div class="img-row">
+                        <img
+                            src="src/landingpage.jpg"
+                            alt="랜딩 페이지"
+                        >
+
+                        <img
+                            src="src/landingpage_2.jpg"
+                            alt="랜딩 페이지 2"
+                        >
+                    </div>
+
+                    <h4>
+                        2. 핵심 기능: 인텔리전트 코칭
+                    </h4>
+
+                    <p>
+                        발화 속도와 침묵 구간을 감지하는 음성 분석과
+                        더불어 시선의 분산도를 실시간으로 추적합니다.
+                    </p>
+
+                    <img
+                        src="src/introduc.jpg"
+                        alt="기능 소개"
+                    >
+
+                    <h4>
+                        3. 인터랙티브 실시간 피드백
+                    </h4>
+
+                    <p>
+                        MediaPipe 기술을 활용해 시선과 자세를
+                        추적하며 이상 감지 시 즉각적인 시각적
+                        인터랙션을 제공합니다.
+                    </p>
+
+                    <img
+                        src="src/present.jpg"
+                        alt="발표"
+                    >
+
+                    <h4>
+                        4. 종합 분석 결과 리포트
+                    </h4>
+
+                    <img
+                        src="src/feedbackpage.jpg"
+                        alt="결과"
+                    >
+                `
+            },
+
+            p2: {
+                title:
+                    "Simvex: Web-based 3D 시각화 및 엔지니어링 학습 플랫폼",
+
+                tags:
+                    "#Three.js #React #Vite #3D_Visualization #Web_Graphics",
+
+                content: `
+                    <h4>
+                        1. 프로젝트 개요 및 대시보드
+                    </h4>
+
+                    <p>
+                        Simvex는 복잡한 하드웨어 구조를 웹 환경에서
+                        직관적으로 탐색하고 시뮬레이션할 수 있도록
+                        설계된 인터랙티브 3D 엔지니어링 학습
+                        플랫폼입니다.
+                    </p>
+
+                    <img
+                        src="src2/landingpage.jpg"
+                        alt="Simvex 프로젝트 대시보드"
+                    >
+
+                    <h4>
+                        2. 단일 부품 레이아웃
+                    </h4>
+
+                    <p>
+                        선택한 엔지니어링 모델의 전체 구조를
+                        다각도에서 열람할 수 있으며 마우스 드래그,
+                        확대, 축소와 초기화 기능을 제공합니다.
+                    </p>
+
+                    <img
+                        src="src2/single.jpg"
+                        alt="조립도 메인 분석 화면"
+                    >
+
+                    <h4>
+                        3. 단일 부품 세부 분석 및 AI 기능
+                    </h4>
+
+                    <p>
+                        부품 선택 네비게이터를 통해 특정 컴포넌트만
+                        개별적으로 3D 뷰어에 출력할 수 있습니다.
+                        부품의 재질과 메커니즘 설명을 확인하고,
+                        AI 분석 요청 및 메모 기능을 이용할 수 있습니다.
+                    </p>
+
+                    <img
+                        src="src2/AI.jpg"
+                        alt="단일 부품 분석 인터페이스"
+                        style="
+                            width: 45%;
+                            margin-left: auto;
+                            margin-right: auto;
+                        "
+                    >
+
+                    <h4>
+                        4. 단계별 조립 가이드 모드
+                    </h4>
+
+                    <p>
+                        컴포넌트의 결합 순서와 메커니즘을 시각적으로
+                        학습할 수 있도록 단계별 조립 모드를
+                        지원합니다.
+                    </p>
+
+                    <img
+                        src="src2/guide.jpg"
+                        alt="단계별 조립 가이드"
+                    >
+
+                    <h4>
+                        5. 자유 시뮬레이터 환경
+                    </h4>
+
+                    <p>
+                        3D 공간에서 모델 회전, 시점 이동,
+                        확대·축소와 분해 및 조립 시뮬레이션을
+                        지원합니다.
+                    </p>
+
+                    <img
+                        src="src2/simulator.jpg"
+                        alt="자유 시뮬레이터 화면"
+                    >
+
+                    <h4>
+                        6. 컨트롤 패널 및 Ghost 모드
+                    </h4>
+
+                    <p>
+                        AI 어시스턴트 가이드 패널과 내부 구조를
+                        투영할 수 있는 Ghost Mode,
+                        학습 내용을 기록하는 메모 컴포넌트를
+                        제공합니다.
+                    </p>
+
+                    <img
+                        src="src2/lego.jpg"
+                        alt="코칭 및 컨트롤 사이드 패널"
+                    >
+                `
+            },
+
+            /* =============================================
+               신규 프로젝트 p6
+            ============================================== */
+
+            p6: {
+                title:
+                    "관공이: 파인튜닝 임베딩 · RAG 기반 공공 민원 안내 챗봇",
+
+                tags:
+                    "#RAG #SentenceTransformers #FAISS #Embedding_Finetuning #GPT_API",
+
+                content: `
+                    <div class="case-intro">
+                        <span class="case-index">
+                            PROJECT OVERVIEW
+                        </span>
+
+                        <p class="case-lead">
+                            행정안전부 민원 데이터를 기반으로
+                            사용자의 자연어 질문과 의미적으로 가까운
+                            민원을 검색하고, 관련 담당 기관과
+                            처리 정보를 함께 제공하는 공공 민원
+                            안내 챗봇을 개발했습니다.
+                        </p>
+                    </div>
+
+                    <div class="case-kpi-grid">
+                        <div class="case-kpi">
+                            <span>PUBLIC SERVICES</span>
+
+                            <strong>6,022</strong>
+
+                            <p>
+                                행정안전부 민원 항목
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>BEFORE</span>
+
+                            <strong>0.6041</strong>
+
+                            <p>
+                                기본 모델 Top 3 정확도
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>AFTER</span>
+
+                            <strong>0.9288</strong>
+
+                            <p>
+                                파인튜닝 모델 Top 3 정확도
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        1. 프로젝트 배경
+                    </h4>
+
+                    <p>
+                        기존 행정 챗봇은 사용자가 입력한 자연어
+                        질문의 의도를 충분히 파악하지 못하거나,
+                        반복적이고 일반적인 답변을 제공하는
+                        한계가 있었습니다.
+                    </p>
+
+                    <p>
+                        이를 개선하기 위해 정제된 행정안전부
+                        민원 데이터를 검색 근거로 활용하고,
+                        검색 결과를 기반으로 답변을 생성하는
+                        RAG 구조를 설계했습니다.
+                    </p>
+
+                    <h4>
+                        2. 민원 데이터 및 벡터 DB 구축
+                    </h4>
+
+                    <p>
+                        행정안전부에서 제공하는 민원명, 소관부처,
+                        담당부서, 사무개요 등 총 6,022개의
+                        민원 항목을 수집했습니다. 또한 46개
+                        소관부처의 전화번호와 주소 정보를 정리하고
+                        검수하여 연락처 데이터로 활용했습니다.
+                    </p>
+
+                    <p>
+                        각 민원의 사무명과 사무개요를 하나의 검색
+                        청크로 결합하고, 소관부처·담당부서·원문
+                        정보는 별도의 메타데이터로 분리하여
+                        검색 결과와 함께 제공되도록 벡터
+                        데이터베이스를 구성했습니다.
+                    </p>
+
+                    <div class="case-flow">
+                        <div class="case-flow-item">
+                            <span>01</span>
+
+                            <strong>
+                                Data Processing
+                            </strong>
+
+                            <p>
+                                사무명과 사무개요를 결합하고
+                                주요 필드를 메타데이터로 분리
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>02</span>
+
+                            <strong>
+                                Embedding
+                            </strong>
+
+                            <p>
+                                문서와 사용자 질문을
+                                임베딩 벡터로 변환
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>03</span>
+
+                            <strong>
+                                FAISS Search
+                            </strong>
+
+                            <p>
+                                벡터 유사도를 기준으로
+                                관련 민원 Top 3 검색
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>04</span>
+
+                            <strong>
+                                RAG Response
+                            </strong>
+
+                            <p>
+                                검색 결과와 질문을 GPT에 전달해
+                                근거 기반 답변 생성
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        3. 임베딩 모델 파인튜닝
+                    </h4>
+
+                    <p>
+                        한국어 문장 임베딩 모델인 Ko-SRoBERTa를
+                        기반 모델로 사용하고, 민원 질의 데이터와
+                        Multiple Negatives Ranking Loss를 적용하여
+                        민원 도메인에 특화된 임베딩 모델로
+                        파인튜닝했습니다.
+                    </p>
+
+                    <div class="model-spec">
+                        <span>BASE MODEL</span>
+
+                        <code>
+                            jhgan/ko-sroberta-multitask
+                        </code>
+                    </div>
+
+                    <p>
+                        동일한 민원과 관련된 질문의 벡터 거리는
+                        가깝게, 서로 다른 민원과 관련된 질문은
+                        멀어지도록 임베딩 공간을 학습했습니다.
+                    </p>
+
+                    <h4>
+                        4. FAISS 검색 및 RAG 답변 생성
+                    </h4>
+
+                    <p>
+                        사용자 질문을 임베딩한 후 FAISS 벡터
+                        데이터베이스에서 가장 유사한 민원 세 건을
+                        검색했습니다. 검색된 민원 내용과 사용자의
+                        질문을 GPT API에 전달하여 자연어 답변을
+                        생성했습니다.
+                    </p>
+
+                    <p>
+                        소관부처, 담당부서와 전화번호처럼 오류가
+                        발생하면 안 되는 정보는 생성 모델에만
+                        의존하지 않고, 저장된 메타데이터와
+                        규칙 기반 추출 방식을 사용해 UI에
+                        별도로 표시했습니다.
+                    </p>
+
+                    <h4>
+                        5. 검색 성능 개선
+                    </h4>
+
+                    <p>
+                        기본 임베딩 모델은 실제 정답 민원이
+                        Top 3 검색 결과에 포함되는 비율이
+                        0.6041이었습니다. 민원 질의 데이터를
+                        이용해 임베딩 모델을 파인튜닝한 결과,
+                        Top 3 검색 정확도를 0.9288까지
+                        향상했습니다.
+                    </p>
+
+                    <div class="case-result-panel">
+                        <span>
+                            TOP 3 RETRIEVAL ACCURACY
+                        </span>
+
+                        <div class="case-result-values">
+                            <strong>0.6041</strong>
+                            <b>→</b>
+                            <strong>0.9288</strong>
+                        </div>
+
+                        <p>
+                            민원 도메인에 특화된 임베딩 학습으로
+                            검색 정확도 약 32.5%p 향상
+                        </p>
+                    </div>
+
+                    <h4>
+                        6. 프로젝트 의의와 한계
+                    </h4>
+
+                    <p>
+                        일반적인 GPT 응답이 아니라 실제
+                        행정안전부 민원 데이터를 검색 근거로
+                        사용함으로써 환각 가능성을 낮추고,
+                        사용자에게 관련 민원과 담당 기관을
+                        함께 제공하는 서비스 구조를 구현했습니다.
+                    </p>
+
+                    <p>
+                        현재 시스템은 한 번의 질문에 답하는
+                        싱글턴 구조이며, 향후에는 이전 대화
+                        맥락을 반영하는 멀티턴 챗봇과
+                        파인튜닝된 오픈소스 LLM을 활용한
+                        구조로 확장할 수 있습니다.
+                    </p>
+                `
+            },
+
+            /* =============================================
+               신규 프로젝트 p7
+            ============================================== */
+
+            p7: {
+                title:
+                    "MIMIC-IV 기반 긴장성 기흉 조기 예측 모델",
+
+                tags:
+                    "#MIMIC_IV #Healthcare_AI #XGBoost #Time_Series #Early_Warning",
+
+                content: `
+                    <div class="case-intro">
+                        <span class="case-index">
+                            PROJECT OVERVIEW
+                        </span>
+
+                        <p class="case-lead">
+                            MIMIC-IV 중환자실 전자의무기록의
+                            생체신호와 동맥혈가스분석 데이터를
+                            활용하여 긴장성 기흉의 위험 징후를
+                            조기에 탐지하는 머신러닝 모델을
+                            구축했습니다.
+                        </p>
+                    </div>
+
+                    <div class="case-kpi-grid">
+                        <div class="case-kpi">
+                            <span>OBSERVATION</span>
+
+                            <strong>3H</strong>
+
+                            <p>
+                                이벤트 이전 관찰 구간
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>AUROC</span>
+
+                            <strong>0.7457</strong>
+
+                            <p>
+                                XGBoost 5-Fold CV
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>RECALL</span>
+
+                            <strong>0.7276</strong>
+
+                            <p>
+                                긴장성 기흉 탐지 민감도
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        1. 프로젝트 배경
+                    </h4>
+
+                    <p>
+                        긴장성 기흉은 흉강 내부로 유입된 공기가
+                        배출되지 않아 압력이 증가하고,
+                        폐 허탈과 심혈관 기능 저하를 일으킬 수
+                        있는 응급 질환입니다.
+                    </p>
+
+                    <p>
+                        중환자실 환자는 의식 저하 등의 이유로
+                        증상을 직접 표현하기 어려울 수 있으므로,
+                        지속적으로 측정되는 생체신호를 활용한
+                        객관적인 조기 경고 모델이 필요합니다.
+                    </p>
+
+                    <h4>
+                        2. 코호트 정의 및 SQL 데이터 추출
+                    </h4>
+
+                    <p>
+                        MIMIC-IV v2.2의 diagnoses_icd,
+                        chartevents, labevents와 procedures_icd
+                        테이블을 활용했습니다. 진단 코드와
+                        흉관 삽입 시술 기록을 기준으로 환자를
+                        세 개의 코호트로 구분했습니다.
+                    </p>
+
+                    <div class="case-cohort-grid">
+                        <div class="case-cohort">
+                            <span>GOLD</span>
+
+                            <strong>
+                                양성군
+                            </strong>
+
+                            <p>
+                                기흉 진단 코드와 흉관 삽입
+                                시술 기록을 모두 보유한 환자
+                            </p>
+                        </div>
+
+                        <div class="case-cohort">
+                            <span>SILVER</span>
+
+                            <strong>
+                                의심군
+                            </strong>
+
+                            <p>
+                                기흉 진단 코드는 존재하지만
+                                흉관 삽입 기록이 없는 환자
+                            </p>
+                        </div>
+
+                        <div class="case-cohort">
+                            <span>CLEAN</span>
+
+                            <strong>
+                                대조군
+                            </strong>
+
+                            <p>
+                                기흉 관련 진단·시술 코드가 없고
+                                기흉이 없다고 확인된 환자
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        학습에는 GOLD 양성군과 CLEAN 대조군을
+                        사용하고, 진단의 불확실성이 존재하는
+                        SILVER 코호트는 학습 데이터에서
+                        제외했습니다.
+                    </p>
+
+                    <h4>
+                        3. 시계열 관찰 구간과 변수 생성
+                    </h4>
+
+                    <p>
+                        양성군은 흉관 삽입 시점을 기준 이벤트로
+                        설정하고, 이벤트 이전 3시간의 생체신호와
+                        ABG 데이터를 추출했습니다. 30분, 60분,
+                        120분 단위의 다중 시간 윈도우를 적용해
+                        단기 변화와 장기 변화 추이를 함께
+                        반영했습니다.
+                    </p>
+
+                    <p>
+                        심박수, 호흡수, 산소포화도,
+                        수축기·이완기 혈압과 pH, PaO2, PaCO2
+                        등의 원시 변수에 더해 Shock Index,
+                        MAP, P/F Ratio, ROX Index를
+                        파생변수로 생성했습니다.
+                    </p>
+
+                    <p>
+                        평균값만으로는 포착하기 어려운 급격한
+                        변화를 반영하기 위해 Skewness,
+                        Kurtosis, RMSSD, MAD와 Sample Entropy
+                        등의 시계열 통계량을 추출했습니다.
+                    </p>
+
+                    <h4>
+                        4. 데이터 전처리
+                    </h4>
+
+                    <div class="case-flow">
+                        <div class="case-flow-item">
+                            <span>01</span>
+
+                            <strong>
+                                Quality Selection
+                            </strong>
+
+                            <p>
+                                결측 기여도가 높은 저품질
+                                대조군 샘플 우선 제거
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>02</span>
+
+                            <strong>
+                                MICE Imputation
+                            </strong>
+
+                            <p>
+                                변수 간 다변량 상관관계를 고려한
+                                결측치 다중 대체
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>03</span>
+
+                            <strong>
+                                Feature Engineering
+                            </strong>
+
+                            <p>
+                                임상 지표와 시계열 변동성
+                                파생변수 생성
+                            </p>
+                        </div>
+
+                        <div class="case-flow-arrow">
+                            →
+                        </div>
+
+                        <div class="case-flow-item">
+                            <span>04</span>
+
+                            <strong>
+                                Model Training
+                            </strong>
+
+                            <p>
+                                환자 단위 교차검증으로
+                                XGBoost·LightGBM 학습
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>
+                        5. 모델링 전략
+                    </h4>
+
+                    <p>
+                        해석 가능한 기준 모델로 Logistic
+                        Regression을 적용한 뒤, 비선형 관계와
+                        시계열 파생변수를 학습할 수 있는
+                        XGBoost와 LightGBM을 주요 모델로
+                        사용했습니다.
+                    </p>
+
+                    <p>
+                        Optuna TPE Sampler를 이용해
+                        하이퍼파라미터를 탐색하고,
+                        scale_pos_weight와 Focal Loss를 통해
+                        클래스 불균형을 보정했습니다.
+                        동일 환자의 데이터가 학습과 검증에
+                        동시에 포함되지 않도록 환자 단위
+                        GroupKFold 5-Fold 교차검증을
+                        적용했습니다.
+                    </p>
+
+                    <h4>
+                        6. 모델 성능
+                    </h4>
+
+                    <div class="case-kpi-grid">
+                        <div class="case-kpi">
+                            <span>AUROC</span>
+
+                            <strong>0.7457</strong>
+
+                            <p>
+                                분류 변별력
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>RECALL</span>
+
+                            <strong>0.7276</strong>
+
+                            <p>
+                                양성 환자 탐지율
+                            </p>
+                        </div>
+
+                        <div class="case-kpi">
+                            <span>F1-SCORE</span>
+
+                            <strong>0.6679</strong>
+
+                            <p>
+                                정밀도·재현율 균형
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        가장 우수한 단일 모델은 5-Fold
+                        교차검증을 적용한 XGBoost였습니다.
+                        응급 질환에서 치명적인 위음성을 줄이는
+                        것이 중요하다는 점을 고려해 Recall을
+                        주요 성능 지표로 평가했습니다.
+                    </p>
+
+                    <h4>
+                        7. 주요 예측 인자
+                    </h4>
+
+                    <div class="case-feature-grid">
+                        <div>
+                            <span>01</span>
+
+                            <strong>
+                                RR Kurtosis
+                            </strong>
+
+                            <p>
+                                최근 2시간 호흡수의
+                                급격한 변화
+                            </p>
+                        </div>
+
+                        <div>
+                            <span>02</span>
+
+                            <strong>
+                                Shock Index Kurtosis
+                            </strong>
+
+                            <p>
+                                쇼크 지수의 비정상적인
+                                급변동
+                            </p>
+                        </div>
+
+                        <div>
+                            <span>03</span>
+
+                            <strong>
+                                SpO2 MAD
+                            </strong>
+
+                            <p>
+                                산소포화도의 시계열
+                                변동성
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        단순한 생체신호 수치보다 최근 2시간
+                        동안의 호흡수와 산소포화도 변화 양상이
+                        더욱 중요한 위험 신호로 나타났습니다.
+                    </p>
+
+                    <h4>
+                        8. 프로젝트 의의와 한계
+                    </h4>
+
+                    <p>
+                        중환자실에서 지속적으로 수집되는
+                        생체신호를 이용해 긴장성 기흉 위험을
+                        조기에 탐지하고, 의료진의 신속한
+                        의사결정을 지원할 수 있는 조기 경고
+                        시스템의 가능성을 확인했습니다.
+                    </p>
+
+                    <p>
+                        다만 흉관 삽입 시술을 긴장성 기흉의
+                        대리 지표로 사용했으며, 단일 기관의
+                        후향적 데이터만 활용했다는 한계가
+                        있습니다. 또한 학습 안정성을 위해
+                        SILVER 의심군을 제외했기 때문에
+                        초기·경증 환자에 대한 탐지 성능은
+                        추가 검증이 필요합니다.
+                    </p>
+                `
+            }
+        };
+
+        /* =================================================
+           MODAL FUNCTIONS
+        ================================================= */
+
+        function showDetail(id) {
+            const data =
+                projectDetails[id];
+
+            const content =
+                document.getElementById(
+                    "detailContent"
+                );
+
+            if (!data || !content) {
+                return;
+            }
+
+            content.classList.remove(
+                "unified-project-modal",
+                "project-p2",
+                "project-p3",
+                "project-p4",
+                "project-p5"
+            );
+
+            if (["p2", "p3", "p4", "p5"].includes(id)) {
+                content.classList.add(
+                    "unified-project-modal",
+                    `project-${id}`
+                );
+            }
+
+            content.innerHTML = `
+                <h2>${data.title}</h2>
+
+                ${
+                    data.tags
+                        ? `
+                            <span class="detail-tags">
+                                ${data.tags}
+                            </span>
+                        `
+                        : ""
+                }
+
+                ${data.content}
+            `;
+
+            const viewer =
+                document.getElementById(
+                    "detailViewer"
+                );
+
+            viewer.style.display = "grid";
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+        function closeDetail() {
+            const viewer =
+                document.getElementById(
+                    "detailViewer"
+                );
+
+            viewer.style.display = "none";
+
+            document.body.style.overflow =
+                "auto";
+        }
+
+        function closeModalOutside(event) {
+            if (
+                event.target.id ===
+                "detailViewer"
+            ) {
+                closeDetail();
+            }
+        }
+
+        /* =================================================
+           COPY EMAIL
+        ================================================= */
+
+        function showCopyToast(
+            message = "이메일이 복사됐어요"
+        ) {
+            const toast =
+                document.getElementById(
+                    "copyToast"
+                );
+
+            toast.textContent = message;
+
+            toast.classList.add("show");
+
+            clearTimeout(
+                window.copyToastTimer
+            );
+
+            window.copyToastTimer =
+                window.setTimeout(
+                    () => {
+                        toast.classList.remove(
+                            "show"
+                        );
+                    },
+                    1800
+                );
+        }
+
+        async function copyEmail(event) {
+            event.preventDefault();
+
+            const email =
+                "seoyoung8939@gmail.com";
+
+            try {
+                await navigator.clipboard
+                    .writeText(email);
+
+                showCopyToast();
+            } catch (error) {
+                const tempInput =
+                    document.createElement(
+                        "input"
+                    );
+
+                tempInput.value = email;
+
+                document.body.appendChild(
+                    tempInput
+                );
+
+                tempInput.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                tempInput.remove();
+
+                showCopyToast();
+            }
+        }
+
+        /* =================================================
+           INTRO SCRIPT
+        ================================================= */
+
+        const introScreen =
+            document.getElementById(
+                "introScreen"
+            );
+
+        const introStage =
+            document.getElementById(
+                "introStage"
+            );
+
+        const introDropZone =
+            document.getElementById(
+                "introDropZone"
+            );
+
+        const introRoleButtons =
+            document.querySelectorAll(
+                ".intro-role"
+            );
+
+        let introFinished = false;
+        let pendingIntroTarget = ".hero";
+
+        if (
+            "scrollRestoration" in history
+        ) {
+            history.scrollRestoration =
+                "manual";
+        }
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "auto"
+        });
+
+        window.setTimeout(
+            () => {
+                if (
+                    !introFinished &&
+                    introStage
+                ) {
+                    introStage.classList
+                        .add("show-role");
+                }
+            },
+            1800
+        );
+
+        function finishIntro(
+            targetSelector = ".hero",
+            immediate = false
+        ) {
+            if (introFinished) {
+                return;
+            }
+
+            introFinished = true;
+
+            pendingIntroTarget =
+                targetSelector || ".hero";
+
+            const delay =
+                immediate ? 0 : 900;
+
+            window.setTimeout(
+                () => {
+                    if (
+                        pendingIntroTarget ===
+                        ".hero"
+                    ) {
+                        window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: "auto"
+                        });
+                    }
+
+                    introScreen.classList.add(
+                        "is-leaving"
+                    );
+
+                    document.body.classList.remove(
+                        "intro-locked"
+                    );
+
+                    window.setTimeout(
+                        () => {
+                            introScreen.remove();
+
+                            const target =
+                                document.querySelector(
+                                    pendingIntroTarget
+                                );
+
+                            if (target) {
+                                target.scrollIntoView({
+                                    behavior: "auto",
+                                    block: "start"
+                                });
+                            } else {
+                                window.scrollTo({
+                                    top: 0,
+                                    left: 0,
+                                    behavior: "auto"
+                                });
+                            }
+
+                            updateActiveMenu();
+                        },
+                        980
+                    );
+                },
+                delay
+            );
+        }
+
+        function selectIntroRole(role) {
+            if (
+                !introStage.classList
+                    .contains("show-role")
+            ) {
+                return;
+            }
+
+            if (
+                introStage.classList
+                    .contains("is-complete")
+            ) {
+                return;
+            }
+
+            introDropZone.textContent =
+                role;
+
+            introStage.classList.add(
+                "is-complete"
+            );
+
+            finishIntro(".hero");
+        }
+
+        introRoleButtons.forEach(
+            (button) => {
+                button.addEventListener(
+                    "dragstart",
+                    (event) => {
+                        event.dataTransfer.setData(
+                            "text/plain",
+                            button.dataset.role
+                        );
+
+                        event.dataTransfer.effectAllowed =
+                            "copy";
+                    }
+                );
+
+                button.addEventListener(
+                    "click",
+                    () => {
+                        selectIntroRole(
+                            button.dataset.role
+                        );
+                    }
+                );
+            }
+        );
+
+        introDropZone.addEventListener(
+            "dragover",
+            (event) => {
+                event.preventDefault();
+
+                introDropZone.classList.add(
+                    "is-over"
+                );
+
+                event.dataTransfer.dropEffect =
+                    "copy";
+            }
+        );
+
+        introDropZone.addEventListener(
+            "dragleave",
+            () => {
+                introDropZone.classList.remove(
+                    "is-over"
+                );
+            }
+        );
+
+        introDropZone.addEventListener(
+            "drop",
+            (event) => {
+                event.preventDefault();
+
+                introDropZone.classList.remove(
+                    "is-over"
+                );
+
+                const role =
+                    event.dataTransfer.getData(
+                        "text/plain"
+                    );
+
+                if (role) {
+                    selectIntroRole(role);
+                }
+            }
+        );
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+                if (event.key === "Escape") {
+                    closeDetail();
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>
